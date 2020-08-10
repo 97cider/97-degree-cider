@@ -1,0 +1,133 @@
+body {
+    background-color: #302b32 !important;
+    overflow:hidden;
+}
+
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.header {
+    color:#585560;
+    size: 32px;
+    font-size: 40px;
+}
+
+.main-container {
+    width: 100%;
+    scrollbar-color: rgb(71, 71, 71) #585560;
+
+    height: 800px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.main {
+    list-style-type: none;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding-top: 20px;
+}
+
+.header-container {
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    background-color: #212226;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.header-color-bar {
+    height: 10px;
+    background: rgb(96,36,108);
+    background: -moz-linear-gradient(162deg, rgba(96,36,108,1) 0%, rgba(190,55,95,1) 47%, rgba(239,133,85,1) 80%, rgba(245,236,109,1) 100%);
+    background: -webkit-linear-gradient(162deg, rgba(96,36,108,1) 0%, rgba(190,55,95,1) 47%, rgba(239,133,85,1) 80%, rgba(245,236,109,1) 100%);
+    background: linear-gradient(162deg, rgba(96,36,108,1) 0%, rgba(190,55,95,1) 47%, rgba(239,133,85,1) 80%, rgba(245,236,109,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#60246c",endColorstr="#f5ec6d",GradientType=1);
+}
+
+.header-links {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.team-header {
+    color: #ffffff;
+    font-size: 28px;
+}
+
+.team-header-sub {
+    color: #827886;
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+.team-logo {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+
+.title-logo {
+    width: 582px;
+    height: 100px;
+}
+
+.header-link {
+    font-size: 18px;
+    &.primary {
+        color: #ef8555;
+    }
+    &.secondary {
+        color: #be375f;
+    }
+}
+
+ul {
+    list-style-type: none;
+}
+
+.game-description {
+    text-align: left;
+}
+
+h3 {
+    color: #ef8555;
+}
+
+.download-container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.download-button {
+    border-color: #ef8555 !important;
+    color: white !important;
+
+    &:hover {
+        background-color: #be375f !important;
+    }
+}
+
+.gallery-image {
+    max-width:100%;
+    height:auto;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}
+
