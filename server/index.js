@@ -2,11 +2,16 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const redis = require("redis");
+const { promisify } = require("util");
 
 require('dotenv').config();
 
 const app = express();
 const port = process.env.port;
+
+const client = redis.createClient();
+const getAsync = promisify(client.get).bind(client);
 
 app.use(bodyParser.json());
 app.use(express.urlencoded( { extended: true } ));
