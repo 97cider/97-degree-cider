@@ -1,6 +1,7 @@
 body {
-    background-color: #302b32 !important;
+    //background-color: #302b32 !important;
     overflow:hidden;
+    margin: 0px;
 }
 
 #app {
@@ -19,18 +20,46 @@ body {
 }
 
 .main-container {
+
+    display: flex;
+
     width: 100%;
+    height: 100%;
+
     scrollbar-color: rgb(71, 71, 71) #585560;
 
-    height: 800px;
     overflow: hidden;
     overflow-y: auto;
 }
 
+.main-blog {
+    flex: 1;
+}
+
+@media screen and (min-width: 600px){
+    .main-renderer-only-desktop {
+        width: 30%;
+        height: 1920px;
+    }
+
+    .main-blog {
+        flex: 1;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .main-renderer-only-desktop {
+        visibility: hidden;
+    }
+
+    .main-blog {
+        position: absolute;
+    }
+}
+
+
 .main {
     list-style-type: none;
-    margin-left: 25%;
-    margin-right: 25%;
     padding-top: 20px;
 }
 

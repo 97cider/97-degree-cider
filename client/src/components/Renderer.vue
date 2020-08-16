@@ -51,9 +51,6 @@ export default {
 
 <style scoped>
 #container {
-  width: 1920px;
   height: 1080px;
-  position: absolute;
-  z-index: -100;
 }
 </style>
