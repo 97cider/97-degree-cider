@@ -4,6 +4,8 @@ import VueRouter from 'vue-router';
 import Home from './pages/Home.vue';
 import NotFound from './pages/NotFound.vue';
 
+import App from './App.vue';
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -16,8 +18,13 @@ const router = new VueRouter({
 });
 
 new Vue({
+  el: '#app',
+  components: {
+    App
+  },
+  template: '<App/>',
   router
-}).$mount('#app');
+});
 
 window.addEventListener('popstate', () => {
   app.currentRoute = window.location.pathname
