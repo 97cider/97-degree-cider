@@ -1,16 +1,7 @@
 <template>
   <div id="app">
     <transition name="fade" appear="true">
-      <div class="main-container"> 
-        <div class="main-blog">
-          <div class="game-description">
-            {{ greeting }}
-          </div>
-        </div>
-        <div class="main-renderer-only-desktop">
-          <Renderer />
-        </div>
-      </div>
+        Woah
     </transition>
   </div>
 </template>
