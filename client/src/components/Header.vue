@@ -49,10 +49,10 @@ export default {
   }
 
   .logo {
-    padding-top: 10px;
+    padding-top: 30px;
     padding-left: 30px;
-    width: 267px;
-    height: 82px;
+    width: 264px;
+    height: 50px;
 
     position: relative;
   }
@@ -66,7 +66,7 @@ export default {
   
   .blog-flavor-text {
     position:absolute;
-    bottom: 15px;
+    bottom: 10px;
     right:0;
   }
 
