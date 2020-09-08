@@ -10,6 +10,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     color: #ffffff;
     overflow: hidden;
+    min-height: 100vh;
 }
 
 .header {
@@ -38,7 +39,6 @@ body {
 @media screen and (min-width: 600px){
     .main-renderer-only-desktop {
         width: 30%;
-        height: 1920px;
     }
 
     .main-blog {
