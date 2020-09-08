@@ -1,6 +1,9 @@
 'use strict';
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const WebpackCopyPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -36,9 +39,25 @@ module.exports = {
         }
       ]
     },
+    optimization: {
+      minimizer: [new UglifyJsPlugin()],
+    },
     plugins: [
-      new VueLoaderPlugin()
+      new VueLoaderPlugin(),
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: 'index.html',
+        inject: true
+      }),
+      new WebpackCopyPlugin({
+        patterns: [
+          { from: 'public', to: 'public' }
+        ]
+      }),
     ],
+    output: {
+      filename: '[name].[chunkhash].js'
+    },
     resolve: {
       alias: {
         'vue$': 'vue/dist/vue.esm.js'
