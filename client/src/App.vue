@@ -1,13 +1,11 @@
 <template>
-  <Blog />
+  <router-view></router-view>
 </template>
 
 <script>
-import Blog from './layouts/Blog.vue';
 export default {
   name: 'App',
   components: {
-      Blog
   }
 }
 </script>
