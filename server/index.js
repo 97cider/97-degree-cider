@@ -10,8 +10,8 @@ require('dotenv').config();
 const app = express();
 const port = process.env.port;
 
-const client = redis.createClient();
-const getAsync = promisify(client.get).bind(client);
+// const client = redis.createClient();
+// const getAsync = promisify(client.get).bind(client);
 
 app.use(bodyParser.json());
 app.use(express.urlencoded( { extended: true } ));
