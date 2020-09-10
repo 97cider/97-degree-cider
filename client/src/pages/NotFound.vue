@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import '../scss/style.scss';
 import HelloWorld from '../components/HelloWorld.vue';
 import Header from '../components/Header.vue';
 

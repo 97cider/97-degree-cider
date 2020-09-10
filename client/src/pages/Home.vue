@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import '../scss/style.scss';
 import axios from 'axios';
 import Header from '../components/Header.vue';
 import HelloWorld from '../components/HelloWorld.vue';

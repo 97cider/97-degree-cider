@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import '../scss/style.scss';
 import axios from 'axios';
 export default {
   name: 'Customize',

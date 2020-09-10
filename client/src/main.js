@@ -10,6 +10,8 @@ import Customize from './pages/customize.vue';
 
 import App from './App.vue';
 
+import './scss/style.scss';
+
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false;

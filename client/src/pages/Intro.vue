@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import '../scss/style.scss';
 export default {
   name: 'Intro',
 }
