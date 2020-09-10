@@ -30,7 +30,7 @@ export default {
         this.mesh = new Three.Mesh( geometry, material );
         this.scene.add( this.mesh );
 
-        this.renderer = new Three.WebGLRenderer( {antialias: true} );
+        this.renderer = new Three.WebGLRenderer( {antialias: true, alpha: true} );
         this.renderer.setSize( container.clientWidth, container.clientHeight );
         this.renderer.setPixelRatio( window.devicePixelRatio );
 

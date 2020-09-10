@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const WebpackCopyPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -54,6 +55,7 @@ module.exports = {
           { from: 'public', to: 'public' }
         ]
       }),
+      new CleanWebpackPlugin(),
     ],
     output: {
       filename: '[name].[chunkhash].js'
