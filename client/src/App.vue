@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Blog from './Layouts/Blog.vue';
+import Blog from './layouts/Blog.vue';
 export default {
   name: 'App',
   components: {
