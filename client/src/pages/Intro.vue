@@ -1,21 +1,36 @@
 <template>
   <div id="app">
-      <div class="intro">
+    <svg preserveAspectRatio="none" viewBox="0 0 500 500">
+        <text class="inner" transform="rotate(90)" y="-5" x="0">97° Cider</text>
+    </svg>
+    <svg preserveAspectRatio="none" viewBox="0 0 500 500">
+        <text class="outer" transform="rotate(90)" y="-15" x="10">97° Cider</text>
+    </svg>
+    <svg preserveAspectRatio="none" viewBox="0 0 500 500">
+        <text class="far-outer" transform="rotate(90)" y="-25" x="20">97° Cider</text>
+    </svg>
+    <div class="intro" v-if="loaded" transition="slide-fade">
         <div class="intro-header">97° Cider</div>
-        <div class="intro-item">
-            <div class="intro-desc">
-                Welcome to the 97° Cider! 
-                This website acts as a personal blog, of sort. Customize your experience and share with others!
+        <transition name="slide-fade">
+            <div class="intro-item" v-show="delayedLoad">
+                <div class="intro-desc">
+                    Welcome to the 97° Cider! 
+                    This website acts as a personal blog, of sort. Customize your experience and share with others!
+                </div>
             </div>
-        </div>
-        <div class="intro-item">
-            <div class="intro-warning">
-                Hey! This webiste contains interactive graphics and audio. If you are photosensitive or have a history of epilepsy, please take caution when browsing the site.<br>You can disable graphics and audio in the graphics setting below. Thanks!
+        </transition>
+        <transition name="slide-fade">
+            <div class="intro-item" v-show="delayedLoadBody">
+                <div class="intro-warning">
+                    Hey! This webiste contains interactive graphics and audio. If you are photosensitive or have a history of epilepsy, please take caution when browsing the site.<br>You can disable graphics and audio in the graphics setting below. Thanks!
+                </div>
             </div>
-        </div>
-        <div class="intro-item">
-            <router-link to="/cafe" tag="button" class="intro-button">Enter</router-link>
-        </div>
+        </transition>
+        <transition name="slide-fade">
+            <div class="intro-item" v-show="finalizeLoad">
+                <router-link to="/cafe" tag="button" class="intro-button">Enter</router-link>
+            </div>
+        </transition>
     </div>
   </div>
 </template>
@@ -23,27 +38,107 @@
 <script>
 export default {
   name: 'Intro',
+  data () {
+      return {
+          loaded: true,
+          delayedLoad: false,
+          delayedLoadBody: false,
+          finalizeLoad: false
+      }
+  },
+  methods: {
+      updateDelayedLoad () {
+        this.delayedLoad = true;
+      },
+      updateDelayedBodyLoad () {
+          this.delayedLoadBody = true;
+      },
+      finalizeDelayedLoad () {
+          this.finalizeLoad = true;
+      }
+  },
+  mounted () {
+      setTimeout( this.updateDelayedLoad, 500);
+      setTimeout( this.updateDelayedBodyLoad, 750);
+      setTimeout( this.finalizeDelayedLoad, 1000);
+  }
 }
 </script>
 
 <style lang="scss">
 
+svg {
+    position: absolute;
+    z-index: 0;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    font-family: adobe-caslon-pro, serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 60px;
+    pointer-events: none;
+}
+
+text {
+    fill: none;
+    stroke:  #494648;
+    stroke-width:0.2px;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.inner {
+    stroke: #494648;
+}
+
+.outer {
+    stroke: #494648b2;
+}
+
+.far-outer {
+    stroke: #4946485b;
+}
+
 .intro {
     height: 100vh;
-    widows: 100vw;
+    min-width: 320px;
     font-size: 40px;
     padding-left: 30%;
     padding-right: 30%;
-    padding-top: 10%;
     display: flex;
     flex-direction: column;
     color: #494648;
+
+    font-family: adobe-caslon-pro, serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 60px;
 
     background: rgb(245,235,252);
     background: -moz-linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
     background: -webkit-linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
     background: linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f5ebfc",endColorstr="#c7acd4",GradientType=1);
+}
+
+.intro-bg-header {
+    color: transparent;
+    font-size: 180px;
+    position: absolute;
+    z-index: -10;
+    left: 0px;
+    right: 0px;
+
+    font-family: adobe-caslon-pro, serif;
+    font-weight: 600;
+    font-style: normal;
+
+    text-shadow:-1px 1px 0 #000,
+                 1px 1px 0 #000,
+                 1px -1px 0 #000,
+                -1px -1px 0 #000;
+
 }
 
 .intro-header {
@@ -60,6 +155,10 @@ export default {
     padding-top: 3%;
     padding-bottom: 3%;
     margin: 0 auto;
+
+    min-height: 0;
+    object-fit: contain;
+    width: 100%;
 }
 
 .intro-button {
@@ -86,11 +185,19 @@ export default {
     cursor: pointer;
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
     .intro{
         padding-left:10%;
         padding-right: 10%;
+        padding-top: 10px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .intro{
         padding-top: 10%;
+        padding-left:30%;
+        padding-right: 30%;
     }
 }
 
@@ -101,6 +208,26 @@ export default {
     border-style: solid;
     border-radius: 7px;
     border-color: #494648;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 1s
+}
+
+.fade-enter, .fade-leave-active {
+   opacity: 0
+}
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(10px);
+  opacity: 0;
 }
 
 </style>
