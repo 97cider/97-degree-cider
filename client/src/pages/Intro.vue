@@ -9,28 +9,32 @@
     <svg preserveAspectRatio="none" viewBox="0 0 500 500">
         <text class="far-outer" transform="rotate(90)" y="-25" x="20">97° Cider</text>
     </svg>
+    <div class="intro-bg "></div>
     <div class="intro" v-if="loaded" transition="slide-fade">
-        <div class="intro-header">97° Cider</div>
-        <transition name="slide-fade">
-            <div class="intro-item" v-show="delayedLoad">
-                <div class="intro-desc">
-                    Welcome to the 97° Cider! 
-                    This website acts as a personal blog, of sort. Customize your experience and share with others!
+        <div class="intro-container">
+            <div class="intro-header">97° Cider</div>
+            <transition name="slide-fade">
+                <div class="intro-item" v-show="delayedLoad">
+                    <div class="intro-desc">
+                        Welcome to the 97° Cider! 
+                        This website acts as a personal blog, of sort. Customize your experience and share with others!
+                    </div>
                 </div>
-            </div>
-        </transition>
-        <transition name="slide-fade">
-            <div class="intro-item" v-show="delayedLoadBody">
-                <div class="intro-warning">
-                    Hey! This webiste contains interactive graphics and audio. If you are photosensitive or have a history of epilepsy, please take caution when browsing the site.<br>You can disable graphics and audio in the graphics setting below. Thanks!
+            </transition>
+            <transition name="slide-fade">
+                <div class="intro-item" v-show="delayedLoadBody">
+                    <div class="intro-warning">
+                        Hey! This webiste contains interactive graphics and audio. If you are photosensitive or have a history of epilepsy, please take caution when browsing the site.<br>You can disable graphics and audio in the graphics setting below. Thanks!
+                    </div>
                 </div>
-            </div>
+            </transition>
+            <transition name="slide-fade">
+                <div class="intro-header">Quality Settings</div>
+                <div class="intro-item" v-show="finalizeLoad">
+                    <router-link to="/cafe" tag="button" class="intro-button">Enter</router-link>
+                </div>
         </transition>
-        <transition name="slide-fade">
-            <div class="intro-item" v-show="finalizeLoad">
-                <router-link to="/cafe" tag="button" class="intro-button">Enter</router-link>
-            </div>
-        </transition>
+        </div>
     </div>
   </div>
 </template>
@@ -100,26 +104,41 @@ text {
     stroke: #4946485b;
 }
 
-.intro {
+.intro-bg {
     height: 100vh;
-    min-width: 320px;
-    font-size: 40px;
-    padding-left: 30%;
-    padding-right: 30%;
-    display: flex;
-    flex-direction: column;
-    color: #494648;
-
-    font-family: adobe-caslon-pro, serif;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 60px;
+    width: 100vw;
+    z-index: -10;
+    position: absolute;
+    left: 0;
+    right: 0;
 
     background: rgb(245,235,252);
     background: -moz-linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
     background: -webkit-linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
     background: linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f5ebfc",endColorstr="#c7acd4",GradientType=1);
+}
+
+.intro {
+    height: 90vh;
+    min-width: 240px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    font-size: 40px;
+    padding-left: 30%;
+    padding-right: 30%;
+    padding-top: 5%;
+    color: #494648;
+
+    font-family: adobe-caslon-pro, serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 60px;
+}
+
+.intro-container {
+ 
 }
 
 .intro-bg-header {
@@ -189,13 +208,17 @@ text {
     .intro{
         padding-left:10%;
         padding-right: 10%;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .intro {
         padding-top: 10px;
     }
 }
 
 @media screen and (min-width: 600px) {
     .intro{
-        padding-top: 10%;
         padding-left:30%;
         padding-right: 30%;
     }
