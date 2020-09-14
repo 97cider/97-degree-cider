@@ -1,29 +1,40 @@
 <template>
   <div id="app">
     <transition name="fade">
-      <svg v-show="!delayedLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
+      <svg class="svg-text" v-show="!delayedLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
             <text class="inner-pre" transform="rotate(90)" y="-5" x="0">97° Cider</text>
         </svg>
     </transition>
     <transition name="slide-fade">
-        <svg v-show="delayedLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
+        <svg class="svg-text" v-show="delayedLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
             <text class="inner" transform="rotate(90)" y="-5" x="0">97° Cider</text>
         </svg>
     </transition>
+    <div class="leaf-container">
+        <transition name="slide-fade">    
+            <img class="svg-leaf" src="public/svgs/leaf3.svg">
+        </transition>
+        <transition name="slide-fade">    
+            <img class="svg-leaf-mid" src="public/svgs/leaf3.svg">
+        </transition>
+        <transition name="slide-fade">    
+            <img class="svg-leaf-outer" src="public/svgs/leaf3.svg">
+        </transition>
+    </div>
     <transition name="slide-fade">
-        <svg v-show="delayedLoadBody" preserveAspectRatio="none" viewBox="0 0 500 500">
+        <svg class="svg-text" v-show="delayedLoadBody" preserveAspectRatio="none" viewBox="0 0 500 500">
             <text class="outer" transform="rotate(90)" y="-15" x="10">97° Cider</text>
         </svg>
     </transition>
     <transition name="slide-fade">
-        <svg v-show="finalizeLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
+        <svg class="svg-text" v-show="finalizeLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
             <text class="far-outer" transform="rotate(90)" y="-25" x="20">97° Cider</text>
         </svg>
     </transition>
     <div class="intro-bg "></div>
     <div class="intro-overlay" v-show="overlay">
         <div class="close-container">
-            <button>close</button>
+            <button v-on:onClick="toggleOverlay">close</button>
         </div>
         <div class="heading">Graphics Settings</div>
     </div>
@@ -84,6 +95,9 @@ export default {
       }
   },
   methods: {
+      toggleOverlay () {
+          this.overlay = !this.overlay;
+      },
       updateDelayedLoad () {
         this.delayedLoad = true;
       },
@@ -104,7 +118,7 @@ export default {
 
 <style lang="scss">
 
-svg {
+.svg-text {
     position: absolute;
     z-index: 0;
     left: 0px;
@@ -114,6 +128,16 @@ svg {
     font-weight: 600;
     font-style: normal;
     font-size: 60px;
+    pointer-events: none;
+}
+
+.svg-leaf {
+    position: absolute;
+    z-index: -1;
+    right: 0px;
+    bottom: 0px;
+    width: 20%;
+    height: 30%;
     pointer-events: none;
 }
 
