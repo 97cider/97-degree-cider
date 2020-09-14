@@ -1,15 +1,32 @@
 <template>
   <div id="app">
-    <svg preserveAspectRatio="none" viewBox="0 0 500 500">
-        <text class="inner" transform="rotate(90)" y="-5" x="0">97° Cider</text>
-    </svg>
-    <svg preserveAspectRatio="none" viewBox="0 0 500 500">
-        <text class="outer" transform="rotate(90)" y="-15" x="10">97° Cider</text>
-    </svg>
-    <svg preserveAspectRatio="none" viewBox="0 0 500 500">
-        <text class="far-outer" transform="rotate(90)" y="-25" x="20">97° Cider</text>
-    </svg>
+    <transition name="fade">
+      <svg v-show="!delayedLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
+            <text class="inner-pre" transform="rotate(90)" y="-5" x="0">97° Cider</text>
+        </svg>
+    </transition>
+    <transition name="slide-fade">
+        <svg v-show="delayedLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
+            <text class="inner" transform="rotate(90)" y="-5" x="0">97° Cider</text>
+        </svg>
+    </transition>
+    <transition name="slide-fade">
+        <svg v-show="delayedLoadBody" preserveAspectRatio="none" viewBox="0 0 500 500">
+            <text class="outer" transform="rotate(90)" y="-15" x="10">97° Cider</text>
+        </svg>
+    </transition>
+    <transition name="slide-fade">
+        <svg v-show="finalizeLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
+            <text class="far-outer" transform="rotate(90)" y="-25" x="20">97° Cider</text>
+        </svg>
+    </transition>
     <div class="intro-bg "></div>
+    <div class="intro-overlay" v-show="overlay">
+        <div class="close-container">
+            <button>close</button>
+        </div>
+        <div class="heading">Graphics Settings</div>
+    </div>
     <div class="intro" v-if="loaded" transition="slide-fade">
         <div class="intro-container">
             <div class="intro-header">97° Cider</div>
@@ -29,8 +46,23 @@
                 </div>
             </transition>
             <transition name="slide-fade">
-                <div class="intro-header">Quality Settings</div>
                 <div class="intro-item" v-show="finalizeLoad">
+                    <div class="intro-header-2">Quality Settings</div>
+                    <div class="intro-quality"> 
+                        <div class="quality-buttons"> 
+                            <button class="intro-button">Disabled</button>
+                            <button class="intro-button">Low</button>
+                            <button class="intro-button">Medium</button>
+                            <button class="intro-button">High</button>
+                        </div> 
+                        <select> 
+                            <option value="" selected="selected">Select</option> 
+                            <option value="disabled">Disabled</option> 
+                            <option value="low">Low</option> 
+                            <option value="medium">Medium</option> 
+                            <option value="high">High</option> 
+                        </select> 
+                    </div>
                     <router-link to="/cafe" tag="button" class="intro-button">Enter</router-link>
                 </div>
         </transition>
@@ -47,7 +79,8 @@ export default {
           loaded: true,
           delayedLoad: false,
           delayedLoadBody: false,
-          finalizeLoad: false
+          finalizeLoad: false,
+          overlay: true,
       }
   },
   methods: {
@@ -96,12 +129,43 @@ text {
     stroke: #494648;
 }
 
+.inner-pre {
+    stroke: none;
+    fill: #49464834;
+}
+
 .outer {
     stroke: #494648b2;
 }
 
 .far-outer {
     stroke: #4946485b;
+}
+
+.intro-quality {
+    .quality-buttons {
+        padding: 0px;
+        display: flex;
+        justify-content: center;
+
+        button {
+            margin-right: 20px;
+        }
+    }
+    select {
+        display: none;
+    }
+}
+
+.intro-overlay {
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    right: 0;
+    backdrop-filter: blur(2px);
+    background: #00000036;
 }
 
 .intro-bg {
@@ -137,10 +201,6 @@ text {
     font-size: 60px;
 }
 
-.intro-container {
- 
-}
-
 .intro-bg-header {
     color: transparent;
     font-size: 180px;
@@ -164,6 +224,10 @@ text {
     text-align: center;
     padding-top: 3%;
     padding-bottom: 3%;
+}
+
+.intro-header-2 {
+    font-size: 28px;
 }
 
 .intro-desc {
@@ -202,12 +266,28 @@ text {
 
     margin: 4px 2px;
     cursor: pointer;
+
+    transition-duration: 0.4s;
+
+    &:hover {
+        background-color: #494648;
+        color: white;
+    }
 }
 
 @media screen and (max-width: 600px) {
     .intro{
         padding-left:10%;
         padding-right: 10%;
+    }
+
+    .intro-quality {
+        .quality-buttons {
+            display: none;
+        }
+        select {
+            display: inline-block;
+        }
     }
 }
 
