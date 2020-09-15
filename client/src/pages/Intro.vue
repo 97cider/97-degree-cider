@@ -57,7 +57,7 @@
                 <div class="intro-item" v-show="finalizeLoad">
                     <div class="intro-header-2">
                         Quality Settings
-                        <button class="more-info" v-on:click="toggleGraphicsOverlay">?</button>
+                        <button class="more-info" v-on:click="toggleGraphicsOverlay" :disabled="isOverlayed" >?</button>
                     </div>
                     <div class="intro-quality"> 
                         <div class="quality-buttons"> 
@@ -95,11 +95,17 @@ export default {
           delayedLoad: false,
           delayedLoadBody: false,
           finalizeLoad: false,
+          isOverlayed: false,
       }
   },
   methods: {
       toggleGraphicsOverlay () {
           this.$refs.graphicsOverlay.toggleOverlay();
+          this.isOverlayed = true;
+          setTimeout( this.toggleDelayButton, 1000);
+      },
+      toggleDelayButton () {
+        this.isOverlayed = false;
       },
       updateDelayedLoad () {
         this.delayedLoad = true;
@@ -210,17 +216,6 @@ text {
     select {
         display: none;
     }
-}
-
-.intro-overlay {
-    height: 100vh;
-    width: 100vw;
-    z-index: 10;
-    position: absolute;
-    left: 0;
-    right: 0;
-    backdrop-filter: blur(2px);
-    background: #00000036;
 }
 
 .intro-bg {
@@ -367,25 +362,4 @@ text {
     border-radius: 7px;
     border-color: #494648;
 }
-
-.fade-enter-active, .fade-leave-active {
-    transition: opacity 1s
-}
-
-.fade-enter, .fade-leave-active {
-   opacity: 0
-}
-
-.slide-fade-enter-active {
-  transition: all .3s ease;
-}
-.slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateY(10px);
-  opacity: 0;
-}
-
 </style>
