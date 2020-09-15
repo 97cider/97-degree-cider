@@ -1,43 +1,40 @@
 <template>
   <div id="app">
-    <transition name="fade">
-      <svg class="svg-text" v-show="!delayedLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
-            <text class="inner-pre" transform="rotate(90)" y="-5" x="0">97° Cider</text>
-        </svg>
-    </transition>
-    <transition name="slide-fade">
-        <svg class="svg-text" v-show="delayedLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
-            <text class="inner" transform="rotate(90)" y="-5" x="0">97° Cider</text>
-        </svg>
-    </transition>
-    <div class="leaf-container">
-        <transition name="slide-fade">    
-            <img class="svg-leaf" src="public/svgs/leaf3.svg">
+    <div class="intro-bg-elements">
+        <transition name="fade">
+        <svg class="svg-text" v-show="!delayedLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
+                <text class="inner-pre" transform="rotate(90)" y="-5" x="0">97° Cider</text>
+            </svg>
         </transition>
-        <transition name="slide-fade">    
-            <img class="svg-leaf-mid" src="public/svgs/leaf3.svg">
+        <transition name="slide-fade">
+            <svg class="svg-text" v-show="delayedLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
+                <text class="inner" transform="rotate(90)" y="-5" x="0">97° Cider</text>
+            </svg>
         </transition>
-        <transition name="slide-fade">    
-            <img class="svg-leaf-outer" src="public/svgs/leaf3.svg">
-        </transition>
-    </div>
-    <transition name="slide-fade">
-        <svg class="svg-text" v-show="delayedLoadBody" preserveAspectRatio="none" viewBox="0 0 500 500">
-            <text class="outer" transform="rotate(90)" y="-15" x="10">97° Cider</text>
-        </svg>
-    </transition>
-    <transition name="slide-fade">
-        <svg class="svg-text" v-show="finalizeLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
-            <text class="far-outer" transform="rotate(90)" y="-25" x="20">97° Cider</text>
-        </svg>
-    </transition>
-    <div class="intro-bg "></div>
-    <div class="intro-overlay" v-show="overlay">
-        <div class="close-container">
-            <button v-on:onClick="toggleOverlay">close</button>
+        <div class="leaf-container">
+            <transition name="slide-fade">    
+                <img class="svg-leaf" src="public/svgs/leaf3.svg">
+            </transition>
+            <transition name="slide-fade">    
+                <img class="svg-leaf mid" src="public/svgs/leaf3.svg">
+            </transition>
+            <transition name="slide-fade">    
+                <img class="svg-leaf outer" src="public/svgs/leaf3.svg">
+            </transition>
         </div>
-        <div class="heading">Graphics Settings</div>
+        <transition name="slide-fade">
+            <svg class="svg-text" v-show="delayedLoadBody" preserveAspectRatio="none" viewBox="0 0 500 500">
+                <text class="outer" transform="rotate(90)" y="-15" x="10">97° Cider</text>
+            </svg>
+        </transition>
+        <transition name="slide-fade">
+            <svg class="svg-text" v-show="finalizeLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
+                <text class="far-outer" transform="rotate(90)" y="-25" x="20">97° Cider</text>
+            </svg>
+        </transition>
     </div>
+    <div class="intro-bg "></div>
+    <overlay ref="graphicsOverlay"> pogger </overlay>
     <div class="intro" v-if="loaded" transition="slide-fade">
         <div class="intro-container">
             <div class="intro-header">97° Cider</div>
@@ -58,7 +55,10 @@
             </transition>
             <transition name="slide-fade">
                 <div class="intro-item" v-show="finalizeLoad">
-                    <div class="intro-header-2">Quality Settings</div>
+                    <div class="intro-header-2">
+                        Quality Settings
+                        <button class="more-info" v-on:click="toggleGraphicsOverlay">?</button>
+                    </div>
                     <div class="intro-quality"> 
                         <div class="quality-buttons"> 
                             <button class="intro-button">Disabled</button>
@@ -83,20 +83,23 @@
 </template>
 
 <script>
+import Overlay from '../components/Overlay.vue';
 export default {
   name: 'Intro',
+  components: {
+      Overlay
+  },
   data () {
       return {
           loaded: true,
           delayedLoad: false,
           delayedLoadBody: false,
           finalizeLoad: false,
-          overlay: true,
       }
   },
   methods: {
-      toggleOverlay () {
-          this.overlay = !this.overlay;
+      toggleGraphicsOverlay () {
+          this.$refs.graphicsOverlay.toggleOverlay();
       },
       updateDelayedLoad () {
         this.delayedLoad = true;
@@ -139,6 +142,34 @@ export default {
     width: 20%;
     height: 30%;
     pointer-events: none;
+
+    &.outer {
+        right: -30px;
+        opacity: 0.5;
+    }
+
+    &.mid {
+        right: -60px;
+        opacity: 0.2;
+    }
+}
+
+.more-info {
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+
+    background-color: Transparent;
+
+    border-radius: 25px;
+    border-width: 2px;
+    border-color: #494648;
+    border-style: solid;
+
+    font-size: 20px;
+
+    margin: 4px 2px;
+    cursor: pointer;
 }
 
 text {
