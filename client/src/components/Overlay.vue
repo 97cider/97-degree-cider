@@ -116,7 +116,6 @@ export default {
             border-radius: 100%;
         }
         100% {
-            //transform: scale(1);
             width: 100vw;
             height: 100vh;
         }

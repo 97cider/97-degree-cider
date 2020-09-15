@@ -49,7 +49,9 @@
             <transition name="slide-fade">
                 <div class="intro-item" v-show="delayedLoadBody">
                     <div class="intro-warning">
-                        Hey! This webiste contains interactive graphics and audio. If you are photosensitive or have a history of epilepsy, please take caution when browsing the site.<br>You can disable graphics and audio in the graphics setting below. Thanks!
+                        <div class="intro-warning-text">
+                          Hey! This webiste contains interactive graphics and audio. If you are photosensitive or have a history of epilepsy, please take caution when browsing the site.<br>You can disable graphics and audio in the graphics setting below. Thanks!
+                        </div>
                     </div>
                 </div>
             </transition>
@@ -354,12 +356,18 @@ text {
     }
 }
 
+.intro-warning-text {
+    padding: 10px;
+}
+
 .intro-warning {
     font-size: 18px;
-    padding: 10px;
     border-width: 1px;
     border-style: solid;
     border-radius: 7px;
     border-color: #494648;
+    color: #494648;
+    background: url(../../public/svgs/swirls4.svg);
+    background-color: #ffffff2c;
 }
 </style>
