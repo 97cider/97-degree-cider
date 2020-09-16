@@ -43,7 +43,7 @@ export default {
         border-radius: 0px;
         z-index: 10;
         position: absolute;
-        background: #3d2d31e8;
+        background: #4d3c43;
 
         margin-left: auto;
         margin-right: auto;

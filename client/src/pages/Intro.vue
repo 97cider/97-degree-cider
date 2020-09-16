@@ -21,6 +21,17 @@
                 <text class="far-outer" transform="rotate(90)" y="-25" x="20">97° Cider</text>
             </svg>
         </transition> -->
+        <div class="leaf-container">
+          <transition name="slide-fade">    
+            <img class="svg-leaf" src="public/svgs/leaf-inverted.svg">
+          </transition>
+          <transition name="slide-fade">    
+            <img class="svg-leaf mid" src="public/svgs/leaf-inverted.svg">
+          </transition>
+          <transition name="slide-fade">    
+            <img class="svg-leaf outer" src="public/svgs/leaf-inverted.svg">
+          </transition>
+        </div>
     </div>
     <div class="intro-bg ">
         <div class="upper"></div>
@@ -68,21 +79,12 @@
                               <option value="high">High</option> 
                           </select> 
                       </div>
-                      <router-link to="/cafe" tag="button" class="intro-button">Enter</router-link>
+
                   </div>
               </transition>
-              <div class="lower">
-                <div class="leaf-container">
-                  <transition name="slide-fade">    
-                      <img class="svg-leaf" src="public/svgs/leaf-inverted.svg">
-                  </transition>
-                  <transition name="slide-fade">    
-                      <img class="svg-leaf mid" src="public/svgs/leaf-inverted.svg">
-                  </transition>
-                  <transition name="slide-fade">    
-                      <img class="svg-leaf outer" src="public/svgs/leaf-inverted.svg">
-                  </transition>
-                </div>
+              <div class="intro-item enter">
+                <div class="lower"></div>
+                <router-link to="/cafe" tag="button" class="intro-button enter">Enter</router-link>
               </div>
           </div>
       </div>
@@ -259,8 +261,9 @@ text {
     position: absolute;
     left: 0;
     right: 0;
-
+    top: 700px;
     background: url(../../public/svgs/wave-border-small.svg);
+    background-size: auto 100%;
 }
 
 .intro {
@@ -332,6 +335,12 @@ text {
         opacity: 0;
         transition: visibility 0s linear 300ms, opacity 300ms;
     }
+
+    &.enter {
+        display: flex;
+        justify-content: center;
+        padding-top: 50px;
+    }
 }
 
 .intro-button {
@@ -357,11 +366,21 @@ text {
     margin: 4px 2px;
     cursor: pointer;
 
+    width: 100%;
+
     transition-duration: 0.4s;
 
     &:hover {
         background-color: #494648;
         color: white;
+    }
+
+    &.enter {
+        border-color: #ddcae3;
+        font-size: 30px;
+        color: #ddcae3;
+        width: 50%;
+        background: url(../../public/svgs/swirls-inverted.svg);
     }
 }
 
