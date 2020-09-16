@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="intro-bg-elements">
-        <transition name="fade">
+        <!-- <transition name="fade">
         <svg class="svg-text" v-show="!delayedLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
                 <text class="inner-pre" transform="rotate(90)" y="-5" x="0">97° Cider</text>
             </svg>
@@ -10,19 +10,8 @@
             <svg class="svg-text" v-show="delayedLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
                 <text class="inner" transform="rotate(90)" y="-5" x="0">97° Cider</text>
             </svg>
-        </transition>
-        <div class="leaf-container">
-            <transition name="slide-fade">    
-                <img class="svg-leaf" src="public/svgs/leaf-default.svg">
-            </transition>
-            <transition name="slide-fade">    
-                <img class="svg-leaf mid" src="public/svgs/leaf-default.svg">
-            </transition>
-            <transition name="slide-fade">    
-                <img class="svg-leaf outer" src="public/svgs/leaf-default.svg">
-            </transition>
-        </div>
-        <transition name="slide-fade">
+        </transition> -->
+        <!-- <transition name="slide-fade">
             <svg class="svg-text" v-show="delayedLoadBody" preserveAspectRatio="none" viewBox="0 0 500 500">
                 <text class="outer" transform="rotate(90)" y="-15" x="10">97° Cider</text>
             </svg>
@@ -31,55 +20,72 @@
             <svg class="svg-text" v-show="finalizeLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
                 <text class="far-outer" transform="rotate(90)" y="-25" x="20">97° Cider</text>
             </svg>
-        </transition>
+        </transition> -->
     </div>
-    <div class="intro-bg "></div>
+    <div class="intro-bg ">
+        <div class="upper"></div>
+    </div>
     <overlay ref="graphicsOverlay"> pogger </overlay>
-    <div class="intro" v-if="loaded" transition="slide-fade">
-        <div class="intro-container">
-            <div class="intro-header">97° Cider</div>
-            <transition name="slide-fade">
-                <div class="intro-item" v-show="delayedLoad">
-                    <div class="intro-desc">
-                        Welcome to the 97° Cider! 
-                        This website acts as a personal blog, of sort. Customize your experience and share with others!
-                    </div>
+    <div class="content">
+      <div class="intro" v-show="loaded" transition="slide-fade">
+          <div class="intro-container">
+              <div class="intro-header">97° Cider</div>
+              <transition mode="out-in" name="slide-fade">
+                  <div class="intro-item" v-bind:class="{ hidden: !delayedLoad }">
+                      <div class="intro-desc">
+                          Welcome to the 97° Cider! 
+                          This website acts as a personal blog, of sort. Customize your experience and share with others!
+                      </div>
+                  </div>
+              </transition>
+              <transition mode="out-in" name="slide-fade">
+                  <div class="intro-item" v-bind:class="{ hidden: !delayedLoadBody}">
+                      <div class="intro-warning">
+                          <div class="intro-warning-text">
+                            Hey! This webiste contains interactive graphics and audio. If you are photosensitive or have a history of epilepsy, please take caution when browsing the site.<br>You can disable graphics and audio in the graphics setting below. Thanks!
+                          </div>
+                      </div>
+                  </div>
+              </transition>
+              <transition mode="out-in" name="slide-fade">
+                  <div class="intro-item" v-bind:class="{ hidden: !finalizeLoad}">
+                      <div class="intro-header-2">
+                          Quality Settings
+                          <button class="more-info" v-on:click="toggleGraphicsOverlay" :disabled="isOverlayed" >?</button>
+                      </div>
+                      <div class="intro-quality"> 
+                          <div class="quality-buttons"> 
+                              <button class="intro-button">Disabled</button>
+                              <button class="intro-button">Low</button>
+                              <button class="intro-button">Medium</button>
+                              <button class="intro-button">High</button>
+                          </div> 
+                          <select> 
+                              <option value="" selected="selected">Select</option> 
+                              <option value="disabled">Disabled</option> 
+                              <option value="low">Low</option> 
+                              <option value="medium">Medium</option> 
+                              <option value="high">High</option> 
+                          </select> 
+                      </div>
+                      <router-link to="/cafe" tag="button" class="intro-button">Enter</router-link>
+                  </div>
+              </transition>
+              <div class="lower">
+                <div class="leaf-container">
+                  <transition name="slide-fade">    
+                      <img class="svg-leaf" src="public/svgs/leaf-inverted.svg">
+                  </transition>
+                  <transition name="slide-fade">    
+                      <img class="svg-leaf mid" src="public/svgs/leaf-inverted.svg">
+                  </transition>
+                  <transition name="slide-fade">    
+                      <img class="svg-leaf outer" src="public/svgs/leaf-inverted.svg">
+                  </transition>
                 </div>
-            </transition>
-            <transition name="slide-fade">
-                <div class="intro-item" v-show="delayedLoadBody">
-                    <div class="intro-warning">
-                        <div class="intro-warning-text">
-                          Hey! This webiste contains interactive graphics and audio. If you are photosensitive or have a history of epilepsy, please take caution when browsing the site.<br>You can disable graphics and audio in the graphics setting below. Thanks!
-                        </div>
-                    </div>
-                </div>
-            </transition>
-            <transition name="slide-fade">
-                <div class="intro-item" v-show="finalizeLoad">
-                    <div class="intro-header-2">
-                        Quality Settings
-                        <button class="more-info" v-on:click="toggleGraphicsOverlay" :disabled="isOverlayed" >?</button>
-                    </div>
-                    <div class="intro-quality"> 
-                        <div class="quality-buttons"> 
-                            <button class="intro-button">Disabled</button>
-                            <button class="intro-button">Low</button>
-                            <button class="intro-button">Medium</button>
-                            <button class="intro-button">High</button>
-                        </div> 
-                        <select> 
-                            <option value="" selected="selected">Select</option> 
-                            <option value="disabled">Disabled</option> 
-                            <option value="low">Low</option> 
-                            <option value="medium">Medium</option> 
-                            <option value="high">High</option> 
-                        </select> 
-                    </div>
-                    <router-link to="/cafe" tag="button" class="intro-button">Enter</router-link>
-                </div>
-        </transition>
-        </div>
+              </div>
+          </div>
+      </div>
     </div>
   </div>
 </template>
@@ -128,7 +134,10 @@ export default {
 </script>
 
 <style lang="scss">
-
+.content {
+    overflow: auto;
+    height: 100%;
+}
 .svg-text {
     position: absolute;
     z-index: 0;
@@ -225,14 +234,33 @@ text {
     width: 100vw;
     z-index: -10;
     position: absolute;
+
+    .upper {
+        height: 100vh;
+        width: 100vw;
+        z-index: -10;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+
+        background: rgb(245,235,252);
+        background: -moz-linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
+        background: -webkit-linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
+        background: linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f5ebfc",endColorstr="#c7acd4",GradientType=1);
+    }
+}
+
+.lower {
+    height: 100%;
+    width: 100%;
+    z-index: -9;
+    position: absolute;
     left: 0;
     right: 0;
 
-    background: rgb(245,235,252);
-    background: -moz-linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
-    background: -webkit-linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
-    background: linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f5ebfc",endColorstr="#c7acd4",GradientType=1);
+    background: url(../../public/svgs/wave-border-small.svg);
 }
 
 .intro {
@@ -294,6 +322,16 @@ text {
     min-height: 0;
     object-fit: contain;
     width: 100%;
+
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 300ms;
+
+    &.hidden {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s linear 300ms, opacity 300ms;
+    }
 }
 
 .intro-button {
@@ -341,11 +379,18 @@ text {
             display: inline-block;
         }
     }
+
+    .lower {
+        display: none;
+    }
 }
 
 @media screen and (max-height: 600px) {
     .intro {
         padding-top: 10px;
+    }
+    .lower {
+        display: none;
     }
 }
 
