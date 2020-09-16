@@ -13,13 +13,13 @@
         </transition>
         <div class="leaf-container">
             <transition name="slide-fade">    
-                <img class="svg-leaf" src="public/svgs/leaf3.svg">
+                <img class="svg-leaf" src="public/svgs/leaf-default.svg">
             </transition>
             <transition name="slide-fade">    
-                <img class="svg-leaf mid" src="public/svgs/leaf3.svg">
+                <img class="svg-leaf mid" src="public/svgs/leaf-default.svg">
             </transition>
             <transition name="slide-fade">    
-                <img class="svg-leaf outer" src="public/svgs/leaf3.svg">
+                <img class="svg-leaf outer" src="public/svgs/leaf-default.svg">
             </transition>
         </div>
         <transition name="slide-fade">
@@ -367,7 +367,6 @@ text {
     border-radius: 7px;
     border-color: #494648;
     color: #494648;
-    background: url(../../public/svgs/swirls4.svg);
-    background-color: #ffffff2c;
+    background: url(../../public/svgs/swirls-default.svg);
 }
 </style>
