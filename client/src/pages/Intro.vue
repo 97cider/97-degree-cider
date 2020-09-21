@@ -61,7 +61,7 @@
               <transition mode="out-in" name="slide-fade">
                   <div class="intro-item" v-bind:class="{ hidden: !finalizeLoad}">
                       <div class="intro-header-2">
-                          Quality Settings
+                          <span class="outline">Quality Settings</span>
                           <button class="more-info" v-on:click="toggleGraphicsOverlay" :disabled="isOverlayed" >?</button>
                       </div>
                       <div class="intro-quality"> 
@@ -83,7 +83,28 @@
                   </div>
               </transition>
               <div class="intro-item enter">
-                <div class="lower"></div>
+                <div class="lower">
+                  <transition name="fade">
+                    <div class="rotated-icon"  v-show="!delayedLoad">
+                      <img class="svg-icon" src="public/svgs/text-logo-full.svg">
+                    </div>
+                  </transition>
+                  <transition name="slide-fade">
+                    <div class="rotated-icon" v-show="delayedLoad">
+                      <img class="svg-icon" src="public/svgs/text-logo.svg">
+                    </div>
+                  </transition>
+                  <transition name="slide-fade">
+                    <div class="rotated-icon outer" v-show="delayedLoadBody">
+                      <img class="svg-icon" src="public/svgs/text-logo.svg">
+                    </div>
+                  </transition>
+                  <transition name="slide-fade">
+                    <div class="rotated-icon far-outer" v-show="finalizeLoad">
+                      <img class="svg-icon" src="public/svgs/text-logo.svg">
+                    </div>
+                  </transition>
+                </div>
                 <router-link to="/cafe" tag="button" class="intro-button enter">Enter</router-link>
               </div>
           </div>
@@ -178,7 +199,8 @@ export default {
     text-decoration: none;
     display: inline-block;
 
-    background-color: Transparent;
+    background-color: #ddcae3;
+    color: #494648;
 
     border-radius: 25px;
     border-width: 2px;
@@ -246,11 +268,7 @@ text {
         right: 0;
         top: 0;
 
-        background: rgb(245,235,252);
-        background: -moz-linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
-        background: -webkit-linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
-        background: linear-gradient(180deg, rgba(245,235,252,1) 0%, rgba(238,218,255,1) 21%, rgba(220,201,228,1) 73%, rgba(199,172,212,1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f5ebfc",endColorstr="#c7acd4",GradientType=1);
+        background: #ddcae3;
     }
 }
 
@@ -311,6 +329,9 @@ text {
 
 .intro-header-2 {
     font-size: 28px;
+    .outline {
+        text-shadow: 0 0 1px #ddcae3, 0 0 1px #ddcae3, 0 0 1px #ddcae3, 0 0 1px #ddcae3;
+    }
 }
 
 .intro-desc {
@@ -341,6 +362,24 @@ text {
         justify-content: center;
         padding-top: 50px;
     }
+
+    .rotated-icon {
+        position: absolute;
+        width: 800px;
+        transform: rotateZ(90deg);
+        left: -400px;
+        top: -412px;
+
+        &.outer {
+            left: -375px;
+            opacity: 0.5;
+        }
+
+        &.far-outer {
+            left: -350px;
+            opacity: 0.2;
+        }
+    }
 }
 
 .intro-button {
@@ -356,7 +395,7 @@ text {
     text-decoration: none;
     display: inline-block;
 
-    background-color: Transparent;
+    background-color: #ddcae3;
 
     border-radius: 5px;
     border-width: 1px;
@@ -378,6 +417,7 @@ text {
     &.enter {
         border-color: #ddcae3;
         font-size: 30px;
+        background-color: #606060;
         color: #ddcae3;
         width: 50%;
         background: url(../../public/svgs/swirls-inverted.svg);
