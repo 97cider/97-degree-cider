@@ -36,14 +36,17 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+
+@import "../scss/palettes.scss";
+
     .overlay {
         height: 100vh;
         width: 100vw;
         border-radius: 0px;
         z-index: 10;
         position: absolute;
-        background: #4d3c43;
+        background: $intro;
 
         margin-left: auto;
         margin-right: auto;
@@ -68,10 +71,10 @@ export default {
 
         border-radius: 25px;
         border-width: 2px;
-        border-color: #ffffff;
+        border-color: $intro-light;
         border-style: solid;
 
-        color: #ffffff;
+        color: $intro-light;
         font-size: 20px;
 
         margin: 4px 2px;
@@ -85,7 +88,7 @@ export default {
         padding-left: 30%;
         padding-right: 30%;
         padding-top: 5%;
-        color: #ffffff;
+        color: $intro-light;
 
         font-family: adobe-caslon-pro, serif;
         font-weight: 600;

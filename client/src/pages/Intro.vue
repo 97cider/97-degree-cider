@@ -157,7 +157,9 @@ export default {
 </script>
 
 <style lang="scss">
+
 @import "../scss/palettes.scss";
+
 .content {
     overflow: auto;
     height: 100%;
