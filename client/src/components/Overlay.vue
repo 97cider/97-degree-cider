@@ -123,4 +123,11 @@ export default {
             height: 100vh;
         }
     }
+
+    @media screen and (max-width: 600px) {
+        .overlay-content {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+    }
 </style>

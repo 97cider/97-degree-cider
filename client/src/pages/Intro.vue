@@ -36,7 +36,18 @@
     <div class="intro-bg ">
         <div class="upper"></div>
     </div>
-    <overlay ref="graphicsOverlay"> pogger </overlay>
+    <overlay ref="graphicsOverlay">
+      <div class="graphics header">
+        Graphics Settings
+      </div>
+      <div class="graphics highlight-container">
+          <div class="highlight-text">
+            This website uses interactive graphics which can be expensive on some machines. Chosing a lower settings option will disable certain options of the site, which can result in better performance.
+            <br>
+            An explanation of the settings can be found below. 
+          </div>
+      </div>
+    </overlay>
     <div class="content">
       <div class="intro" v-show="loaded" transition="slide-fade">
           <div class="intro-container">
@@ -458,5 +469,28 @@ text {
     border-color: $intro-dark;
     color: $intro-dark;
     background: url(../../public/svgs/swirls-default.svg);
+}
+
+.graphics {
+    &.header {
+        color: $intro-light;
+        font-size: 38px;
+    }
+
+    &.highlight-container {
+        color: $intro-light;
+        font-size: 28px;
+        
+        border-width: 1px;
+        border-radius: 7px;
+        border-color: $intro-light;
+        border-style: solid;
+
+        background: url(../../public/svgs/swirls-inverted.svg);
+
+        .highlight-text {
+            padding: 10px;
+        }
+    }
 }
 </style>
