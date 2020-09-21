@@ -47,6 +47,32 @@
             An explanation of the settings can be found below. 
           </div>
       </div>
+      <div class="graphics graphics-items">
+        <div class="graphics-item">
+          <div class="header">Disabled</div>
+          <div class="item-content">
+              Disables all interactive graphics. Provides a simple, blog reading experience. Prefered for mobile devices, as screen sizes occlude most interactive graphics.
+          </div>
+        </div>
+        <div class="graphics-item">
+          <div class="header">Simple</div>
+          <div class="item-content">
+              Disables interaction for some elements such as particles. Post proccessing effects disabled. Preffered for a more simple experience while still keeping the environment provided by the 3D graphics.
+          </div>
+        </div>
+        <div class="graphics-item">
+          <div class="header">Medium <i>- Recommended</i></div>
+          <div class="item-content">
+              Everything enabled. Limited memory usage for post processing and certain interactable elements. Prefered for the intended 97° Cider experience.
+          </div>
+        </div>
+        <div class="graphics-item">
+          <div class="header">High</div>
+          <div class="item-content">
+              Everything enabled. Increase resource usage for certain effects. Prefered for higher end computers or those who wish to focus more on the interactive elements.
+          </div>
+        </div>
+      </div>
     </overlay>
     <div class="content">
       <div class="intro" v-show="loaded" transition="slide-fade">
@@ -78,7 +104,7 @@
                       <div class="intro-quality"> 
                           <div class="quality-buttons"> 
                               <button class="intro-button">Disabled</button>
-                              <button class="intro-button">Low</button>
+                              <button class="intro-button">Simple</button>
                               <button class="intro-button">Medium</button>
                               <button class="intro-button">High</button>
                           </div> 
@@ -474,12 +500,13 @@ text {
 .graphics {
     &.header {
         color: $intro-light;
-        font-size: 38px;
+        font-size: 48px;
+        padding-bottom: 20px;
     }
 
     &.highlight-container {
         color: $intro-light;
-        font-size: 28px;
+        font-size: 20px;
         
         border-width: 1px;
         border-radius: 7px;
@@ -487,9 +514,33 @@ text {
         border-style: solid;
 
         background: url(../../public/svgs/swirls-inverted.svg);
-
         .highlight-text {
             padding: 10px;
+        }
+    }
+
+    &.graphics-items {
+
+        padding-top: 20px;
+
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        .graphics-item {
+
+            padding-top: 20px;
+
+            .header {
+                color: $intro-light;
+                font-size: 28px;
+                padding-bottom: 10px;
+            }
+            .item-content {
+                font-size: 20px;
+                padding-left: 10px;
+                opacity: 0.9;
+            }
         }
     }
 }
