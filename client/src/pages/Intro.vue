@@ -157,6 +157,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../scss/palettes.scss";
 .content {
     overflow: auto;
     height: 100%;
@@ -199,12 +200,12 @@ export default {
     text-decoration: none;
     display: inline-block;
 
-    background-color: #ddcae3;
-    color: #494648;
+    background-color: $intro-light;
+    color: $intro-dark;
 
     border-radius: 25px;
     border-width: 2px;
-    border-color: #494648;
+    border-color: $intro-dark;
     border-style: solid;
 
     font-size: 20px;
@@ -215,27 +216,10 @@ export default {
 
 text {
     fill: none;
-    stroke:  #494648;
+    stroke:  $intro-dark;
     stroke-width:0.2px;
     stroke-linejoin: round;
     pointer-events: none;
-}
-
-.inner {
-    stroke: #494648;
-}
-
-.inner-pre {
-    stroke: none;
-    fill: #49464834;
-}
-
-.outer {
-    stroke: #494648b2;
-}
-
-.far-outer {
-    stroke: #4946485b;
 }
 
 .intro-quality {
@@ -268,7 +252,7 @@ text {
         right: 0;
         top: 0;
 
-        background: #ddcae3;
+        background: $intro-light;
     }
 }
 
@@ -294,7 +278,7 @@ text {
     padding-left: 30%;
     padding-right: 30%;
     padding-top: 5%;
-    color: #494648;
+    color: $intro-dark;
 
     font-family: adobe-caslon-pro, serif;
     font-weight: 600;
@@ -330,7 +314,7 @@ text {
 .intro-header-2 {
     font-size: 28px;
     .outline {
-        text-shadow: 0 0 1px #ddcae3, 0 0 1px #ddcae3, 0 0 1px #ddcae3, 0 0 1px #ddcae3;
+        text-shadow: 0 0 1px $intro-light, 0 0 1px $intro-light, 0 0 1px $intro-light, 0 0 1px $intro-light;
     }
 }
 
@@ -384,7 +368,7 @@ text {
 
 .intro-button {
     font-size: 24px;
-    color: #494648;
+    color: $intro-dark;
     padding-left: 20px;
     padding-right: 20px;
 
@@ -395,11 +379,11 @@ text {
     text-decoration: none;
     display: inline-block;
 
-    background-color: #ddcae3;
+    background-color: $intro-light;
 
     border-radius: 5px;
     border-width: 1px;
-    border-color: #494648;
+    border-color: $intro-dark;
     border-style: solid;
 
     margin: 4px 2px;
@@ -410,15 +394,15 @@ text {
     transition-duration: 0.4s;
 
     &:hover {
-        background-color: #494648;
+        background-color: $intro-dark;
         color: white;
     }
 
     &.enter {
-        border-color: #ddcae3;
+        border-color: $intro-light;
         font-size: 30px;
-        background-color: #606060;
-        color: #ddcae3;
+        background-color: $intro;
+        color: $intro-light;
         width: 50%;
         background: url(../../public/svgs/swirls-inverted.svg);
     }
@@ -469,8 +453,8 @@ text {
     border-width: 1px;
     border-style: solid;
     border-radius: 7px;
-    border-color: #494648;
-    color: #494648;
+    border-color: $intro-dark;
+    color: $intro-dark;
     background: url(../../public/svgs/swirls-default.svg);
 }
 </style>
