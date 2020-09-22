@@ -1,16 +1,16 @@
 <template>
     <transition name="bounce" v-on:before-enter="disableContent" v-on:after-enter="enableContent" v-on:before-leave="disableContent">
       <div class="overlay" v-bind:class="{ fullscreen: overlay }" v-show="overlay">
-          <div class="close-container" v-show="showContent">
-            <button class="close-button" v-on:click="disableContent(); toggleOverlay();">X</button>
-          </div>
-            <div class="overlay-container">
-              <transition name="slide-fade">
-                <div v-show="showContent" class="overlay-content">
-                  <slot></slot>
-                </div>
-              </transition>
+        <div class="close-container" v-show="showContent">
+          <button class="close-button" v-on:click="disableContent(); toggleOverlay();">X</button>
+        </div>
+        <div class="overlay-container">
+          <transition name="slide-fade">
+            <div v-show="showContent" class="overlay-content">
+              <slot></slot>
             </div>
+          </transition>
+        </div>
       </div>
     </transition>
 </template>

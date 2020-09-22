@@ -142,7 +142,8 @@
                     </div>
                   </transition>
                 </div>
-                <router-link to="/cafe" tag="button" class="intro-button enter">Enter</router-link>
+                <button class="intro-button enter" v-on:click="navigateToCafe">Enter</button>
+                <!-- <router-link to="/cafe" tag="button" class="intro-button enter" v-on:click="configureSettings">Enter</router-link> -->
               </div>
           </div>
       </div>
@@ -152,6 +153,9 @@
 
 <script>
 import Overlay from '../components/Overlay.vue';
+
+const conf = require('../scripts/config');
+
 export default {
   name: 'Intro',
   components: {
@@ -164,9 +168,17 @@ export default {
           delayedLoadBody: false,
           finalizeLoad: false,
           isOverlayed: false,
+          targetQuality: conf.quality.LOW,
       }
   },
   methods: {
+      navigateToCafe() {
+        this.$parent.setQualityLevel(this.targetQuality);
+        this.$router.push('/cafe');
+      },
+      configureSettings () {
+          this.$parent.setQualityLevel(this.targetQuality);
+      },
       toggleGraphicsOverlay () {
           this.$refs.graphicsOverlay.toggleOverlay();
           this.isOverlayed = true;
