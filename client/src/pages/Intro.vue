@@ -103,10 +103,10 @@
                       </div>
                       <div class="intro-quality"> 
                           <div class="quality-buttons"> 
-                              <button class="intro-button">Disabled</button>
-                              <button class="intro-button">Simple</button>
-                              <button class="intro-button">Medium</button>
-                              <button class="intro-button">High</button>
+                              <button class="intro-button" v-bind:class="{ disabled: compareToCurrentQuality('quality_disabled') }" v-on:click="selectQuality('quality_disabled')">Disabled</button>
+                              <button class="intro-button" v-bind:class="{ disabled: compareToCurrentQuality('quality-simple') }" v-on:click="selectQuality('quality_simple')">Simple</button>
+                              <button class="intro-button" v-bind:class="{ disabled: compareToCurrentQuality('quality_default') }" v-on:click="selectQuality('quality_default')">Medium</button>
+                              <button class="intro-button" v-bind:class="{ disabled: compareToCurrentQuality('quality_high') }" v-on:click="selectQuality('quality_high')">High</button>
                           </div> 
                           <select> 
                               <option value="" selected="selected">Select</option> 
@@ -172,6 +172,15 @@ export default {
       }
   },
   methods: {
+      compareToCurrentQuality (name) {
+        if(name == this.targetQuality) 
+          return true;
+        return false;
+      },
+      selectQuality (quality) {
+        this.targetQuality = quality;
+        console.log(this.targetQuality);
+      },
       navigateToCafe() {
         this.$parent.setQualityLevel(this.targetQuality);
         this.$router.push('/cafe');
@@ -445,6 +454,13 @@ text {
     transition-duration: 0.4s;
 
     &:hover {
+        background-color: $intro-dark;
+        color: white;
+    }
+
+    &.disabled {
+        cursor: not-allowed;
+        pointer-events: none;
         background-color: $intro-dark;
         color: white;
     }
