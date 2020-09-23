@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from './scripts/store/store';
 
 import Intro from './pages/Intro.vue';
 import Home from './pages/Home.vue';
@@ -36,11 +37,15 @@ const router = new VueRouter({
 
 new Vue({
   el: '#app',
+  router,
   components: {
     App
   },
   template: '<App/>',
-  router
+  beforeCreate() { 
+    this.$store.commit('initStore');
+  },
+  store: store
 });
 
 window.addEventListener('popstate', () => {
