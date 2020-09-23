@@ -1,37 +1,17 @@
 <template>
   <div id="app">
     <div class="intro-bg-elements">
-        <!-- <transition name="fade">
-        <svg class="svg-text" v-show="!delayedLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
-                <text class="inner-pre" transform="rotate(90)" y="-5" x="0">97° Cider</text>
-            </svg>
+      <div class="leaf-container">
+        <transition name="slide-fade">    
+          <img class="svg-leaf" src="public/svgs/leaf-inverted.svg">
         </transition>
-        <transition name="slide-fade">
-            <svg class="svg-text" v-show="delayedLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
-                <text class="inner" transform="rotate(90)" y="-5" x="0">97° Cider</text>
-            </svg>
-        </transition> -->
-        <!-- <transition name="slide-fade">
-            <svg class="svg-text" v-show="delayedLoadBody" preserveAspectRatio="none" viewBox="0 0 500 500">
-                <text class="outer" transform="rotate(90)" y="-15" x="10">97° Cider</text>
-            </svg>
+        <transition name="slide-fade">    
+          <img class="svg-leaf mid" src="public/svgs/leaf-inverted.svg">
         </transition>
-        <transition name="slide-fade">
-            <svg class="svg-text" v-show="finalizeLoad" preserveAspectRatio="none" viewBox="0 0 500 500">
-                <text class="far-outer" transform="rotate(90)" y="-25" x="20">97° Cider</text>
-            </svg>
-        </transition> -->
-        <div class="leaf-container">
-          <transition name="slide-fade">    
-            <img class="svg-leaf" src="public/svgs/leaf-inverted.svg">
-          </transition>
-          <transition name="slide-fade">    
-            <img class="svg-leaf mid" src="public/svgs/leaf-inverted.svg">
-          </transition>
-          <transition name="slide-fade">    
-            <img class="svg-leaf outer" src="public/svgs/leaf-inverted.svg">
-          </transition>
-        </div>
+        <transition name="slide-fade">    
+          <img class="svg-leaf outer" src="public/svgs/leaf-inverted.svg">
+        </transition>
+      </div>
     </div>
     <div class="intro-bg ">
         <div class="upper"></div>
@@ -108,13 +88,6 @@
                               <button class="intro-button" v-bind:class="{ disabled: compareToCurrentQuality('quality-default') }" v-on:click="selectQuality('quality-default')">Medium</button>
                               <button class="intro-button" v-bind:class="{ disabled: compareToCurrentQuality('quality-high') }" v-on:click="selectQuality('quality-high')">High</button>
                           </div> 
-                          <!-- <select> 
-                              <option value="" selected="selected">Select</option> 
-                              <option value="disabled">Disabled</option> 
-                              <option value="low">Low</option> 
-                              <option value="medium">Medium</option> 
-                              <option value="high">High</option> 
-                          </select> -->
                           <select v-model="targetQuality">
                              <option disabled value="">Quality</option>
                              <option value="quality-disabled">Disabled</option>
@@ -150,7 +123,6 @@
                   </transition>
                 </div>
                 <button class="intro-button enter" v-on:click="navigateToCafe">Enter</button>
-                <!-- <router-link to="/cafe" tag="button" class="intro-button enter" v-on:click="configureSettings">Enter</router-link> -->
               </div>
           </div>
       </div>
@@ -160,8 +132,7 @@
 
 <script>
 import Overlay from '../components/Overlay.vue';
-
-const conf = require('../scripts/config');
+import conf from '../scripts/config';
 
 export default {
   name: 'Intro',
@@ -184,40 +155,49 @@ export default {
           return true;
         return false;
       },
+
       selectQuality (quality) {
         this.targetQuality = quality;
         console.log(this.targetQuality);
       },
+
       navigateToCafe() {
-        //this.$parent.setQualityLevel(this.targetQuality);
         this.$store.commit('updateQualitySettings', this.targetQuality);
         this.$router.push('/cafe');
       },
+
       configureSettings () {
           this.$parent.setQualityLevel(this.targetQuality);
       },
+
       toggleGraphicsOverlay () {
           this.$refs.graphicsOverlay.toggleOverlay();
           this.isOverlayed = true;
           setTimeout( this.toggleDelayButton, 1000);
       },
+
       toggleDelayButton () {
         this.isOverlayed = false;
       },
+
       updateDelayedLoad () {
         this.delayedLoad = true;
       },
+
       updateDelayedBodyLoad () {
           this.delayedLoadBody = true;
       },
+
       finalizeDelayedLoad () {
           this.finalizeLoad = true;
       }
   },
+
   beforeMount () {
     console.log(this.$store.state.qualitySettings);
     this.targetQuality = this.$store.state.qualitySettings;
   },
+
   mounted () {
       setTimeout( this.updateDelayedLoad, 500);
       setTimeout( this.updateDelayedBodyLoad, 750);
@@ -233,18 +213,6 @@ export default {
 .content {
     overflow: auto;
     height: 100%;
-}
-.svg-text {
-    position: absolute;
-    z-index: 0;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    font-family: adobe-caslon-pro, serif;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 60px;
-    pointer-events: none;
 }
 
 .svg-leaf {
@@ -284,14 +252,6 @@ export default {
 
     margin: 4px 2px;
     cursor: pointer;
-}
-
-text {
-    fill: none;
-    stroke:  $intro-dark;
-    stroke-width:0.2px;
-    stroke-linejoin: round;
-    pointer-events: none;
 }
 
 .intro-quality {
@@ -356,25 +316,6 @@ text {
     font-weight: 600;
     font-style: normal;
     font-size: 60px;
-}
-
-.intro-bg-header {
-    color: transparent;
-    font-size: 180px;
-    position: absolute;
-    z-index: -10;
-    left: 0px;
-    right: 0px;
-
-    font-family: adobe-caslon-pro, serif;
-    font-weight: 600;
-    font-style: normal;
-
-    text-shadow:-1px 1px 0 #000,
-                 1px 1px 0 #000,
-                 1px -1px 0 #000,
-                -1px -1px 0 #000;
-
 }
 
 .intro-header {
