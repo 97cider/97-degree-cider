@@ -103,18 +103,25 @@
                       </div>
                       <div class="intro-quality"> 
                           <div class="quality-buttons"> 
-                              <button class="intro-button" v-bind:class="{ disabled: compareToCurrentQuality('quality_disabled') }" v-on:click="selectQuality('quality_disabled')">Disabled</button>
-                              <button class="intro-button" v-bind:class="{ disabled: compareToCurrentQuality('quality-simple') }" v-on:click="selectQuality('quality_simple')">Simple</button>
-                              <button class="intro-button" v-bind:class="{ disabled: compareToCurrentQuality('quality_default') }" v-on:click="selectQuality('quality_default')">Medium</button>
-                              <button class="intro-button" v-bind:class="{ disabled: compareToCurrentQuality('quality_high') }" v-on:click="selectQuality('quality_high')">High</button>
+                              <button class="intro-button" v-bind:class="{ disabled: compareToCurrentQuality('quality-disabled') }" v-on:click="selectQuality('quality-disabled')">Disabled</button>
+                              <button class="intro-button" v-bind:class="{ disabled: compareToCurrentQuality('quality-simple') }" v-on:click="selectQuality('quality-simple')">Simple</button>
+                              <button class="intro-button" v-bind:class="{ disabled: compareToCurrentQuality('quality-default') }" v-on:click="selectQuality('quality-default')">Medium</button>
+                              <button class="intro-button" v-bind:class="{ disabled: compareToCurrentQuality('quality-high') }" v-on:click="selectQuality('quality-high')">High</button>
                           </div> 
-                          <select> 
+                          <!-- <select> 
                               <option value="" selected="selected">Select</option> 
                               <option value="disabled">Disabled</option> 
                               <option value="low">Low</option> 
                               <option value="medium">Medium</option> 
                               <option value="high">High</option> 
-                          </select> 
+                          </select> -->
+                          <select v-model="targetQuality">
+                             <option disabled value="">Quality</option>
+                             <option value="quality-disabled">Disabled</option>
+                             <option value="quality-simple">Simple</option>
+                             <option value="quality-default">Default</option>
+                             <option value="quality-high">High</option>
+                           </select>
                       </div>
 
                   </div>
@@ -182,7 +189,8 @@ export default {
         console.log(this.targetQuality);
       },
       navigateToCafe() {
-        this.$parent.setQualityLevel(this.targetQuality);
+        //this.$parent.setQualityLevel(this.targetQuality);
+        this.$store.commit('updateQualitySettings', this.targetQuality);
         this.$router.push('/cafe');
       },
       configureSettings () {
@@ -205,6 +213,10 @@ export default {
       finalizeDelayedLoad () {
           this.finalizeLoad = true;
       }
+  },
+  beforeMount () {
+    console.log(this.$store.state.qualitySettings);
+    this.targetQuality = this.$store.state.qualitySettings;
   },
   mounted () {
       setTimeout( this.updateDelayedLoad, 500);

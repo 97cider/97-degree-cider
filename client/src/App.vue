@@ -17,6 +17,7 @@ export default {
   methods: {
     setQualityLevel (quality) {
       this.quality = quality;
+      this.$store.commit('updateQualitySettings', this.quality);
       console.log(this.quality);
       // fire off any events to children to change accordingly
     }
