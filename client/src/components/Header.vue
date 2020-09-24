@@ -1,12 +1,12 @@
 <template>
-  <div class="header-container">
+  <div class="header-container" v-bind:style="{ backgroundColor: this.$root.getColorScheme().base}">
     <div class="header-content">
       <!-- <img class="icon settings" alt="97" src="public/svgs/settings-icon.svg"> -->
       <QuickAccess/>
-      <img class="logo" alt="97 Degree Cider" src="public/svgs/logo-nondoodle.svg">
-      <img class="icon" alt="97" src="public/svgs/dropdown-icon.svg">
+      <img class="logo" alt="97 Degree Cider" src="public/svgs/logo-nondoodle.svg" v-bind:class="{ inverted: this.$root.getColorScheme().invertIcons}">
+      <img class="icon" alt="97" src="public/svgs/dropdown-icon.svg" v-bind:class="{ inverted: this.$root.getColorScheme().invertIcons}">
     </div>
-    <div class="shadow-bar"></div>
+    <div class="shadow-bar" v-bind:style="{ backgroundColor: this.$root.getColorScheme().highlight}"></div>
   </div>
 </template>
 
@@ -39,20 +39,16 @@ export default {
   }
 
   .header-container {
-    background: $intro-light;
+    background-color: $intro-light;
+    transition: background-color 0.3s;
   }
 
   .icon {
     width: 30px;
     height: 30px;
-    transition: all 0.3s ease-in-out 1.0s;
-    &.settings {
-      width: 40px;
-      height: 40px;
-      &:hover {
-        -webkit-animation: rotating 2s linear infinite;
-        animation: rotating 2s linear infinite;
-      }
+    transition: all 0.3s;
+    &.inverted {
+      filter: invert(1.0);
     }
   }
 
@@ -77,6 +73,10 @@ export default {
   .logo {
     width: 253px;
     height: 50px;
+    transition: all 0.3s;
+    &.inverted {
+      filter: invert(1.0);
+    }
   }
 
   .blog-description {
@@ -95,7 +95,7 @@ export default {
   .shadow-bar {
     width: 100%;
     height: 5px;
-    background-color: $intro-highlight;
+    background-color: tomato;
   }
 
   @media screen and (max-width: 600px) {

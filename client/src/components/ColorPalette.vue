@@ -1,5 +1,5 @@
 <template>
-  <div class="color-palette" v-on="{ mouseover: showTooltip, mouseleave: hideTooltip }">
+  <div class="color-palette" v-on="{ mouseover: showTooltip, mouseleave: hideTooltip, click: selectPallete }">
     <transition name="slide">
         <div class="tooltip" v-show="tooltipEnabled">
             <div class="text">{{ this.colorPalette.name }}</div>
@@ -21,7 +21,7 @@ export default {
   },
   methods : {
       selectPallete () {
-          //this.$parent.blahblahblah;
+          this.$root.setColorScheme(this.colorPalette);
       },
       showTooltip () {
           this.tooltipEnabled = true;

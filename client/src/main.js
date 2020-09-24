@@ -58,6 +58,10 @@ new Vue({
     },
     setColorScheme (theme) {
       this.colorScheme = theme;
+    },
+    getColorScheme () {
+      console.log(this.colorScheme);
+      return this.colorScheme;
     }
   },
   store: store

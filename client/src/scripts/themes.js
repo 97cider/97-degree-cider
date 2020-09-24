@@ -21,6 +21,7 @@ const darkTheme = require('../scss/dark-theme.scss');
 module.exports = Object.assign({
     themes: [{
             name: 'Spring Latte',
+            invertIcons: true,
             base: standardTheme.baseColor,
             text: standardTheme.textColor,
             detail: standardTheme.detailColor,
@@ -28,6 +29,7 @@ module.exports = Object.assign({
         },
         {
             name: 'Dark Mocha',
+            invertIcons: false,
             base: darkTheme.baseColor,
             text: darkTheme.textColor,
             detail: darkTheme.detailColor,
