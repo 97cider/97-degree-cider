@@ -3,15 +3,15 @@ const darkTheme = require('../scss/dark-theme.scss');
 
 module.exports = Object.assign({
     standardTheme: {
-        base: standardTheme.primaryThemeColor,
-        light: standardTheme.darkThemeColor,
-        dark: standardTheme.lightThemeColor,
-        highlight: standardTheme.highlightThemeColor
+        base: standardTheme.baseColor,
+        text: standardTheme.textColor,
+        detail: standardTheme.detailColor,
+        highlight: standardTheme.highlightColor,
     },
     darkTheme: {
-        base: darkTheme.primaryThemeColor,
-        light: darkTheme.darkThemeColor,
-        dark: darkTheme.lightThemeColor,
-        highlight: darkTheme.highlightThemeColor
+        base: darkTheme.baseColor,
+        text: darkTheme.textColor,
+        detail: darkTheme.detailColor,
+        highlight: darkTheme.highlightColor,
     }
 });

@@ -162,18 +162,18 @@ export default {
       },
 
       navigateToCafe() {
-        this.$store.commit('updateQualitySettings', this.targetQuality);
+        this.$parent.setQualityLevel(this.targetQuality);
         this.$router.push('/cafe');
       },
 
       configureSettings () {
-          this.$parent.setQualityLevel(this.targetQuality);
+        this.$parent.setQualityLevel(this.targetQuality);
       },
 
       toggleGraphicsOverlay () {
-          this.$refs.graphicsOverlay.toggleOverlay();
-          this.isOverlayed = true;
-          setTimeout( this.toggleDelayButton, 1000);
+        this.$refs.graphicsOverlay.toggleOverlay();
+        this.isOverlayed = true;
+        setTimeout( this.toggleDelayButton, 1000);
       },
 
       toggleDelayButton () {
@@ -185,11 +185,11 @@ export default {
       },
 
       updateDelayedBodyLoad () {
-          this.delayedLoadBody = true;
+        this.delayedLoadBody = true;
       },
 
       finalizeDelayedLoad () {
-          this.finalizeLoad = true;
+        this.finalizeLoad = true;
       }
   },
 

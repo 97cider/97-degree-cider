@@ -1,12 +1,12 @@
-$base: #DDCAE3;
-$dark: #353234;
-$light: #ffffff;
+$base: #4D3C43;
+$text: #353234;
+$detail: #DDCAE3;
 $highlight: #89402E; 
 
 
 :export {
-    primaryThemeColor: $base;
-    darkThemeColor: $dark;
-    lightThemeColor: $light;
-    highlightThemeColor: $highlight;
+    baseColor: $base;
+    textColor: $text;
+    detailColor: $detail;
+    highlightColor: $highlight;
 }

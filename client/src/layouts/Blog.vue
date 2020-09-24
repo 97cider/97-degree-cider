@@ -6,7 +6,7 @@
           <router-view/>
           <div class = "blog-header">Hello!</div>
            <button class="intro-button" v-on:click="getColorTheme">Test </button>
-           <div class="theme-test">Color Theme Test</div>
+           <div class="theme-test" v-bind:style="currentColorScheme" >Color Theme Test</div>
       </div>
       <div class="main-renderer-only-desktop">
           <Renderer />
@@ -28,15 +28,27 @@ export default {
       Header,
       Renderer
   },
+  data () {
+    return {
+      currentColorScheme: {
+        backgroundColor: '',
+        color: '' ,
+      }
+    };
+  },
   methods: {
     getColorTheme() {
       console.log(Themes.standardTheme);
+      this.currentColorScheme.backgroundColor = Themes.darkTheme.base;
+      this.currentColorScheme.color = Themes.darkTheme.text;
     },
     disableGraphics () {
-      this.$store.commit('updateQualitySettings', conf.quality.DISABLED);
+      this.$parent.setQualityLevel(conf.quality.DISABLED);
+      // this.$store.commit('updateQualitySettings', conf.quality.DISABLED);
     },
     updateQuality() {
-      this.$store.commit('updateQualitySettings', conf.quality.HIGH);
+      this.$parent.setQualityLevel(conf.quality.HIGH);
+      //this.$store.commit('updateQualitySettings', conf.quality.HIGH);
     },
     viewQuality() {
       alert("Quality " + this.$store.state.qualitySettings);
@@ -47,3 +59,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .theme-test {
+    width: 200px;
+    height: 200px;
+    background-color: tomato;
+    color: blue;
+
+    transition: background-color 2s, color 2s;
+  }
+</style>

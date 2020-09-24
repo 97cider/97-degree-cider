@@ -6,19 +6,21 @@
 'use strict';
 
 const conf = require('./scripts/config');
+const themes = require('./scripts/themes');
 
 export default {
   name: 'App',
   data () {
     return {
-      quality: conf.quality.MED
+      colorScheme: themes.standardTheme,
     };
   },
   methods: {
     setQualityLevel (quality) {
-      this.quality = quality;
-      console.log(this.quality);
-      // fire off any events to children to change accordingly
+      this.$store.commit('updateQualitySettings', quality);
+    },
+    setColorScheme (theme) {
+      this.colorScheme = theme;
     }
   },
   components: {

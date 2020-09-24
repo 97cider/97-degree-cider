@@ -2,12 +2,14 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 const conf = require('../config');
+const theme = require('../themes');
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
         qualitySettings: conf.quality.MED,
+        colorSettings: theme.standardTheme,
     }, 
     mutations: {
       initStore () {
@@ -15,10 +17,18 @@ export default new Vuex.Store({
         if (currentQuality) {
             this.state.qualitySettings = currentQuality;
         }
+        let currentColorScheme = localStorage.getItem('colorScheme');
+        if (currentColorScheme) {
+          this.state.colorSettings = currentColorScheme;
+        }
       },
       updateQualitySettings (state, quality) {
         localStorage.setItem('qualitySettings', quality);
-        state.qualitySettings = quality;
+        this.state.qualitySettings = quality;
       },
+      updateColorScheme (state, theme) {
+        localStorage.setItem('colorScheme', theme);
+        this.state.colorSettings = theme;
+      }
     }
 });
