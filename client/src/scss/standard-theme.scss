@@ -1,0 +1,12 @@
+$base: #DDCAE3;
+$dark: #353234;
+$light: #ffffff;
+$highlight: #89402E; 
+
+
+:export {
+    primaryThemeColor: $base;
+    darkThemeColor: $dark;
+    lightThemeColor: $light;
+    highlightThemeColor: $highlight;
+}

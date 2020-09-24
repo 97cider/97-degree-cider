@@ -1,15 +1,11 @@
 <template>
   <div class="header-container">
     <div class="header-content">
-      <img class="icon" alt="97" src="public/images/icon-base.png">
-      <img class="logo" alt="97 Degree Cider" src="public/images/logo.png">
-      <div class="blog-description">
-        <span class="blog-flavor-text">
-          <i>A Relaxing Blog</i>
-        </span>
-      </div>
+      <img class="icon" alt="97" src="public/svgs/dropdown-icon.svg">
+      <img class="logo" alt="97 Degree Cider" src="public/svgs/logo-nondoodle.svg">
+      <img class="icon" alt="97" src="public/svgs/dropdown-icon.svg">
     </div>
-    <div class="header-color-bar"></div>
+    <div class="shadow-bar"></div>
   </div>
 </template>
 
@@ -26,35 +22,30 @@ export default {
 
 <style lang="scss" scoped>
   
+  @import "../scss/palettes.scss";
+
   .header-content {
-    padding-left: 5%;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
   .header-container {
-       background: #e6ddde;
+    background: $intro-light;
   }
 
   .icon {
-    width: 39px;
-    height: 69px;
-
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
-    position: relative;
+    width: 30px;
+    height: 30px;
   }
 
   .logo {
-    padding-top: 30px;
-    padding-left: 30px;
-    width: 264px;
+    width: 253px;
     height: 50px;
-
-    position: relative;
   }
 
   .blog-description {
@@ -68,6 +59,12 @@ export default {
     position:absolute;
     bottom: 10px;
     right:0;
+  }
+
+  .shadow-bar {
+    width: 100%;
+    height: 5px;
+    background-color: $intro-highlight;
   }
 
 </style>
