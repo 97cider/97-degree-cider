@@ -5,7 +5,7 @@
         <div class="quick-access-menu" v-show="!collapsed" >
           <div class="quick-access-header">
               <div class="header-text">Settings</div>
-              <button class="menu-close-button" v-on:click="toggleMenu();">X</button>
+              <div class="header-close" v-on:click="toggleMenu();"><img alt="97" src="public/svgs/close-icon.svg"></div>
             </div>
           <div class="quick-access-items">
               <div class="quick-access-item single">
@@ -110,6 +110,17 @@ export default {
 
   }
 
+  .header-close {
+    position: absolute;
+    right: 5px;
+    top: -8px;
+    margin-right: 5px;
+    margin-top: 5px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
   .menu-close-button {
     position: absolute;
     right: 0;
@@ -117,15 +128,10 @@ export default {
     margin-right: 5px;
     margin-top: 5px;
 
-    text-align: center;
-    text-decoration: none;
+    width: 20px;
+    height: 20px;
+
     display: inline-block;
-    font-size: 28px;
-    
-    border-radius: 25px;
-    border-width: 0px;
-    border-color: $intro-light;
-    border-style: solid;
 
     background-color: Transparent;
     color: #ffffff79;
@@ -138,7 +144,10 @@ export default {
       color: $intro-light;
       .header-text {
         padding-left: 10px;
-        padding-top: 10px;
+        font-family: lemonde-courrier, serif;
+        font-weight: 400;
+        font-style: normal;
+        padding-bottom: 5px;
       }
   }
 
@@ -228,10 +237,10 @@ export default {
   }
 
   .bounce-enter-active {
-  animation: bounce-in 0.3s;
+  animation: bounce-in 0.2s;
 }
   .bounce-leave-active {
-    animation: bounce-in 0.2s reverse;
+    animation: bounce-in 0.1s reverse;
   }
   @keyframes bounce-in {
     0% {
