@@ -9,7 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         qualitySettings: conf.quality.MED,
-        colorSettings: theme.standardTheme,
+        colorSettings: theme.themes[0],
     }, 
     mutations: {
       initStore () {

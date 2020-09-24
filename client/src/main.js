@@ -49,7 +49,7 @@ new Vue({
   },
   data () {
     return {
-      colorScheme: themes.standardTheme,
+      colorScheme: themes.themes[0],
     };
   },
   methods: {

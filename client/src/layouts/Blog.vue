@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     getColorTheme() {
-      console.log(Themes.standardTheme);
+      console.log(Themes.themes[0]);
     },
 
     disableGraphics () {

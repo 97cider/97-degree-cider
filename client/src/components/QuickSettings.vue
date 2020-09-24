@@ -15,29 +15,8 @@
               <div class="quick-access-item">
                   <div class="quick-access-item-header">Color Theme:</div>
                   <div class="theme-grid-container">
-                      <div class="theme-item">
-                          <ColorPalette v-bind:colorPalette="this.targetColorScheme" />
-                      </div>
-                      <div class="theme-item">
-                          <ColorPalette v-bind:colorPalette="this.targetColorScheme" />
-                      </div>
-                      <div class="theme-item">
-                          <ColorPalette v-bind:colorPalette="this.targetColorScheme" />
-                      </div>
-                      <div class="theme-item">
-                          <ColorPalette v-bind:colorPalette="this.targetColorScheme" />
-                      </div>
-                      <div class="theme-item">
-                          <ColorPalette v-bind:colorPalette="this.targetColorScheme" />
-                      </div>
-                      <div class="theme-item">
-                          <ColorPalette v-bind:colorPalette="this.targetColorScheme" />
-                      </div>
-                      <div class="theme-item">
-                          <ColorPalette v-bind:colorPalette="this.targetColorScheme" />
-                      </div>
-                      <div class="theme-item">
-                          <ColorPalette v-bind:colorPalette="this.targetColorScheme" />
+                      <div class="theme-item" v-for="theme in this.themes" :key="theme.name">
+                          <ColorPalette v-bind:colorPalette="theme" />
                       </div>
                   </div>
               </div>
@@ -59,6 +38,7 @@
 <script>
 import ColorPalette from './ColorPalette.vue';
 import conf from '../scripts/config';
+import Themes from '../scripts/themes';
 
 export default {
   name: 'QuickAccess',
@@ -70,6 +50,7 @@ export default {
           collapsed: true,
           targetQuality: this.$store.state.qualitySettings,
           targetColorScheme: this.$store.state.colorSettings,
+          themes: Themes.themes,
       };
   },
   methods : {
