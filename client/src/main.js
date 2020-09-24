@@ -11,6 +11,8 @@ import Customize from './pages/customize.vue';
 
 import App from './App.vue';
 
+import themes from './scripts/themes';
+
 import './scss/style.scss';
 
 Vue.use(VueRouter);
@@ -44,6 +46,19 @@ new Vue({
   template: '<App/>',
   beforeCreate() { 
     this.$store.commit('initStore');
+  },
+  data () {
+    return {
+      colorScheme: themes.standardTheme,
+    };
+  },
+  methods: {
+    setQualityLevel (quality) {
+      this.$store.commit('updateQualitySettings', quality);
+    },
+    setColorScheme (theme) {
+      this.colorScheme = theme;
+    }
   },
   store: store
 });

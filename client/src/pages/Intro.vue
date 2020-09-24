@@ -162,12 +162,12 @@ export default {
       },
 
       navigateToCafe() {
-        this.$parent.setQualityLevel(this.targetQuality);
+        this.$root.setQualityLevel(this.targetQuality);
         this.$router.push('/cafe');
       },
 
       configureSettings () {
-        this.$parent.setQualityLevel(this.targetQuality);
+        this.$root.setQualityLevel(this.targetQuality);
       },
 
       toggleGraphicsOverlay () {

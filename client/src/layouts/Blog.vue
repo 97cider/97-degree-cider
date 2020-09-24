@@ -39,23 +39,22 @@ export default {
   methods: {
     getColorTheme() {
       console.log(Themes.standardTheme);
-      this.currentColorScheme.backgroundColor = Themes.darkTheme.base;
-      this.currentColorScheme.color = Themes.darkTheme.text;
     },
+
     disableGraphics () {
-      this.$parent.setQualityLevel(conf.quality.DISABLED);
-      // this.$store.commit('updateQualitySettings', conf.quality.DISABLED);
+      this.$root.setQualityLevel(conf.quality.DISABLED);
     },
+
     updateQuality() {
-      this.$parent.setQualityLevel(conf.quality.HIGH);
-      //this.$store.commit('updateQualitySettings', conf.quality.HIGH);
+      this.$root.setQualityLevel(conf.quality.HIGH);
     },
+
     viewQuality() {
       alert("Quality " + this.$store.state.qualitySettings);
     }
   },
   mounted () {
-    console.log("Hey this is the store value for quality settings: " + this.$store.state.qualitySettings);
+    this.currentColorScheme = this.$store.state.colorSettings;
   }
 }
 </script>
