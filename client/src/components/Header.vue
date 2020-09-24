@@ -3,10 +3,10 @@
     <div class="header-content">
       <!-- <img class="icon settings" alt="97" src="public/svgs/settings-icon.svg"> -->
       <QuickAccess/>
-      <img class="logo" alt="97 Degree Cider" src="public/svgs/logo-nondoodle.svg" v-bind:class="{ inverted: this.$root.getColorScheme().invertIcons}">
-      <img class="icon" alt="97" src="public/svgs/dropdown-icon.svg" v-bind:class="{ inverted: this.$root.getColorScheme().invertIcons}">
+      <img class="logo" alt="97 Degree Cider" src="public/svgs/logo-nondoodle.svg" v-bind:class="{ inverted: getBackgroundColor}">
+      <img class="icon" alt="97" src="public/svgs/dropdown-icon.svg" v-bind:class="{ inverted: invertIcons}">
     </div>
-    <div class="shadow-bar" v-bind:style="{ backgroundColor: this.$root.getColorScheme().highlight}"></div>
+    <div class="shadow-bar" v-bind:style="{ backgroundColor: getHighlightColor}"></div>
   </div>
 </template>
 
@@ -17,6 +17,17 @@ export default {
   name: 'Header',
   components: {
     QuickAccess,
+  },
+  computed: {
+    getBackgroundColor: function () {
+      return this.$root.getColorScheme().base;
+    },
+    invertIcons:  function () {
+      return this.$root.getColorScheme().inverIcons;
+    },
+    getHighlightColor: function () {
+      return this.$root.getColorScheme().highlight;
+    }
   },
   props: {
     msg: String

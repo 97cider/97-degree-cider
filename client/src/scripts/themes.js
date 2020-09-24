@@ -29,7 +29,7 @@ module.exports = Object.assign({
         },
         {
             name: 'Dark Mocha',
-            invertIcons: false,
+            invertIcons: true,
             base: darkTheme.baseColor,
             text: darkTheme.textColor,
             detail: darkTheme.detailColor,
