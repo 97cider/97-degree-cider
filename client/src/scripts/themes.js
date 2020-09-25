@@ -1,6 +1,7 @@
 const standardTheme = require('../scss/standard-theme.scss');
 const darkTheme = require('../scss/dark-theme.scss');
-
+const blueTheme = require('../scss/rain-theme.scss');
+const mornTheme = require('../scss/morning-theme.scss');
 // module.exports = Object.assign({
 //     standardTheme: {
 //         name: 'Spring Latte',
@@ -34,5 +35,22 @@ module.exports = Object.assign({
             text: darkTheme.textColor,
             detail: darkTheme.detailColor,
             highlight: darkTheme.highlightColor,
-        }]
+        },
+        {
+            name: 'Rainy Season',
+            invertIcons: true,
+            base: blueTheme.baseColor,
+            text: blueTheme.textColor,
+            detail: blueTheme.detailColor,
+            highlight: blueTheme.highlightColor,
+        },
+        {
+            name: 'Morning Commute',
+            invertIcons: false,
+            base: mornTheme.baseColor,
+            text: mornTheme.textColor,
+            detail: mornTheme.detailColor,
+            highlight: mornTheme.highlightColor,
+        }
+    ]
 });

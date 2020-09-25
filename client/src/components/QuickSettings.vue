@@ -4,7 +4,7 @@
       <transition name="bounce">
         <div class="quick-access-menu" v-show="!collapsed" v-bind:style="{ backgroundColor: getBaseColor}" >
           <div class="quick-access-header" v-bind:style="{ backgroundColor: getDetailColor}">
-              <div class="header-text" v-bind:style="{ color: getTextColor}">Settings</div>
+              <div class="header-text">Settings</div>
               <div class="header-close" v-on:click="toggleMenu();"><img alt="97" src="public/svgs/close-icon.svg"></div>
             </div>
           <div class="quick-access-items">
