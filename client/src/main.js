@@ -60,7 +60,6 @@ new Vue({
       this.colorScheme = theme;
     },
     getColorScheme () {
-      console.log(this.colorScheme);
       return this.colorScheme;
     }
   },

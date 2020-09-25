@@ -44,7 +44,6 @@ export default {
     },
     onWindowResize: function() {
       let container = document.getElementById('container');
-      console.log(container);
       this.camera.aspect = container.clientWidth / container.clientHeight;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize( container.clientWidth, container.clientHeight );

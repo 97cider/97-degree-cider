@@ -5,7 +5,7 @@
             <div class="text">{{ this.colorPalette.name }}</div>
         </div>
     </transition>
-    <div class="palette" v-bind:style="{ backgroundColor: this.colorPalette.base }">
+    <div class="palette" v-bind:style="{ backgroundColor: this.colorPalette.detail }">
       <div class="secondary-color" v-bind:style="{ borderTopColor: this.colorPalette.highlight }"></div>
     </div>
   </div>

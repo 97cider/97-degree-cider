@@ -1,19 +1,19 @@
 <template>
   <div class="quick-access-settings">
-      <div  v-on:click="toggleMenu"><img class="icon-settings" alt="97" src="public/svgs/settings-icon.svg"></div>
+      <div  v-on:click="toggleMenu"><img class="icon-settings" alt="97" src="public/svgs/settings-icon.svg" v-bind:class="{ inverted: invertIcons}"></div>
       <transition name="bounce">
-        <div class="quick-access-menu" v-show="!collapsed" >
-          <div class="quick-access-header">
-              <div class="header-text">Settings</div>
+        <div class="quick-access-menu" v-show="!collapsed" v-bind:style="{ backgroundColor: getBaseColor}" >
+          <div class="quick-access-header" v-bind:style="{ backgroundColor: getDetailColor}">
+              <div class="header-text" v-bind:style="{ color: getTextColor}">Settings</div>
               <div class="header-close" v-on:click="toggleMenu();"><img alt="97" src="public/svgs/close-icon.svg"></div>
             </div>
           <div class="quick-access-items">
               <div class="quick-access-item single">
-                  <div class="quick-access-item-header">Night Mode:</div>
+                  <div class="quick-access-item-header" v-bind:style="{ color: getTextColor}">Night Mode:</div>
                   <button class="toggleButton"></button>
               </div>
               <div class="quick-access-item">
-                  <div class="quick-access-item-header">Color Theme:</div>
+                  <div class="quick-access-item-header" v-bind:style="{ color: getTextColor}">Color Theme:</div>
                   <div class="theme-grid-container">
                       <div class="theme-item" v-for="theme in this.themes" :key="theme.name">
                           <ColorPalette v-bind:colorPalette="theme" />
@@ -21,7 +21,7 @@
                   </div>
               </div>
               <div class="quick-access-item">
-                <div class="quick-access-item-header">Quality</div>
+                <div class="quick-access-item-header" v-bind:style="{ color: getTextColor}">Quality</div>
                 <div class="quality-settings-container">
                   <button class="quality-button" v-bind:class="{ disabled: compareToCurrentQuality('quality-disabled') }" v-on:click="selectQuality('quality-disabled')">X</button>
                   <button class="quality-button" v-bind:class="{ disabled: compareToCurrentQuality('quality-simple') }" v-on:click="selectQuality('quality-simple')">S</button>
@@ -69,6 +69,23 @@ export default {
             return false;
       },
   },
+  computed : {
+    getTextColor: function () {
+      return this.$root.getColorScheme().text;
+    },
+    getBaseColor: function () {
+      return this.$root.getColorScheme().base;
+    },
+    getDetailColor: function () {
+        return this.$root.getColorScheme().detail;
+    },
+    invertIcons:  function () {
+      return this.$root.getColorScheme().invertIcons;
+    },
+    getHighlightColor: function () {
+      return this.$root.getColorScheme().highlight;
+    }
+  },
   props: {
     colorTheme: Object
   }
@@ -82,6 +99,9 @@ export default {
   .icon-settings {
     width: 40px;
     height: 40px;
+    &.inverted {
+        filter: invert(1.0)
+    }
     &:hover {
         -webkit-animation: rotating 2s linear infinite;
         animation: rotating 2s linear infinite;
@@ -138,7 +158,7 @@ export default {
   }
 
   .quick-access-header {
-      background: url(../../public/svgs/swirls-inverted.svg);
+      background-color: tomato;
       font-size: 32px;
       border-radius: 10px 10px 0 0;
       color: $intro-light;

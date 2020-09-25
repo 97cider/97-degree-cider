@@ -1,9 +1,9 @@
 <template>
-  <div class="header-container" v-bind:style="{ backgroundColor: this.$root.getColorScheme().base}">
+  <div class="header-container" v-bind:style="{ backgroundColor: getDetailColor}">
     <div class="header-content">
       <!-- <img class="icon settings" alt="97" src="public/svgs/settings-icon.svg"> -->
       <QuickAccess/>
-      <img class="logo" alt="97 Degree Cider" src="public/svgs/logo-nondoodle.svg" v-bind:class="{ inverted: getBackgroundColor}">
+      <img class="logo" alt="97 Degree Cider" src="public/svgs/logo-nondoodle.svg" v-bind:class="{ inverted: invertIcons}">
       <img class="icon" alt="97" src="public/svgs/dropdown-icon.svg" v-bind:class="{ inverted: invertIcons}">
     </div>
     <div class="shadow-bar" v-bind:style="{ backgroundColor: getHighlightColor}"></div>
@@ -19,11 +19,11 @@ export default {
     QuickAccess,
   },
   computed: {
-    getBackgroundColor: function () {
-      return this.$root.getColorScheme().base;
+    getDetailColor: function () {
+      return this.$root.getColorScheme().detail;
     },
     invertIcons:  function () {
-      return this.$root.getColorScheme().inverIcons;
+      return this.$root.getColorScheme().invertIcons;
     },
     getHighlightColor: function () {
       return this.$root.getColorScheme().highlight;
