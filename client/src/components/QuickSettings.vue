@@ -1,6 +1,6 @@
 <template>
   <div class="quick-access-settings">
-      <div  v-on:click="toggleMenu"><img class="icon-settings" alt="97" src="public/svgs/settings-icon.svg" v-bind:class="{ inverted: invertIcons}"></div>
+      <div  v-on:click="toggleMenu"><img class="icon-settings" v-bind:src=" collapsed ? 'public/svgs/settings-icon-open.svg' : 'public/svgs/settings-icon.svg'" v-bind:class="{ inverted: invertIcons}"></div>
       <transition name="bounce">
         <div class="quick-access-menu" v-show="!collapsed" v-bind:style="{ backgroundColor: getBaseColor}" >
           <div class="quick-access-header" v-bind:style="{ backgroundColor: getDetailColor}">
@@ -99,6 +99,7 @@ export default {
   .icon-settings {
     width: 40px;
     height: 40px;
+    cursor: pointer;
     &.inverted {
         filter: invert(1.0)
     }
@@ -120,7 +121,7 @@ export default {
     font-weight: 600;
     font-style: normal;
 
-    border-radius: 10px;
+    border-radius: 15px 15px 10px 10px;
 
     -webkit-box-shadow: 0px 11px 29px -10px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 11px 29px -10px rgba(0,0,0,0.75);
@@ -173,6 +174,7 @@ export default {
 
   .quality-settings-container {
       display: flex;
+      justify-content: space-evenly;
   }
 
   .quality-button {

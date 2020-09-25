@@ -57,6 +57,7 @@ export default {
     padding: 4px;
     background: rgb(70, 70, 70);
     border-radius: 5px;
+    cursor: pointer;
   }
 
   .palette {

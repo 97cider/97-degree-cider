@@ -1,0 +1,11 @@
+$base:  #221c24;
+$detail: #295662;
+$text: #8d8e8e;
+$highlight: #dc4a60; 
+
+:export {
+    baseColor: $base;
+    textColor: $text;
+    detailColor: $detail;
+    highlightColor: $highlight;
+}
