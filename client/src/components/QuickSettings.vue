@@ -71,19 +71,19 @@ export default {
   },
   computed : {
     getTextColor: function () {
-      return this.$root.getColorScheme().text;
+      return this.$store.state.colorSettings.text;
     },
     getBaseColor: function () {
-      return this.$root.getColorScheme().base;
+      return this.$store.state.colorSettings.base;
     },
     getDetailColor: function () {
-        return this.$root.getColorScheme().detail;
+        return this.$store.state.colorSettings.detail;
     },
     invertIcons:  function () {
-      return this.$root.getColorScheme().invertIcons;
+      return this.$store.state.colorSettings.invertIcons;
     },
     getHighlightColor: function () {
-      return this.$root.getColorScheme().highlight;
+      return this.$store.state.colorSettings.highlight;
     }
   },
   props: {

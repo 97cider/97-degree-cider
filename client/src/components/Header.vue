@@ -20,13 +20,13 @@ export default {
   },
   computed: {
     getDetailColor: function () {
-      return this.$root.getColorScheme().detail;
+      return this.$store.state.colorSettings.detail;
     },
     invertIcons:  function () {
-      return this.$root.getColorScheme().invertIcons;
+      return this.$store.state.colorSettings.invertIcons;
     },
     getHighlightColor: function () {
-      return this.$root.getColorScheme().highlight;
+      return this.$store.state.colorSettings.highlight;
     }
   },
   props: {

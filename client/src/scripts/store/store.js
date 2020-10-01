@@ -19,15 +19,15 @@ export default new Vuex.Store({
         }
         let currentColorScheme = localStorage.getItem('colorScheme');
         if (currentColorScheme) {
-          this.state.colorSettings = currentColorScheme;
+          this.state.colorSettings =  JSON.parse(currentColorScheme);
         }
       },
       updateQualitySettings (state, quality) {
         localStorage.setItem('qualitySettings', quality);
         this.state.qualitySettings = quality;
       },
-      updateColorScheme (state, theme) {
-        localStorage.setItem('colorScheme', theme);
+      updateColorSettings (state, theme) {
+        localStorage.setItem('colorScheme', JSON.stringify(theme));
         this.state.colorSettings = theme;
       }
     }

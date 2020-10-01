@@ -2,7 +2,7 @@
   <div id="app">
     <Header/>
     <div class="main-container">
-      <div class="main-blog" v-bind:style="{ backgroundColor: this.$root.getColorScheme().base }">
+      <div class="main-blog" v-bind:style="{ backgroundColor: this.$store.state.colorSettings.base }">
           <router-view/>
           <div class = "blog-header">Hello!</div>
            <button class="intro-button" v-on:click="getColorTheme">Test </button>

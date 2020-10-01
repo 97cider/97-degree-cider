@@ -47,20 +47,12 @@ new Vue({
   beforeCreate() { 
     this.$store.commit('initStore');
   },
-  data () {
-    return {
-      colorScheme: themes.themes[0],
-    };
-  },
   methods: {
     setQualityLevel (quality) {
       this.$store.commit('updateQualitySettings', quality);
     },
     setColorScheme (theme) {
-      this.colorScheme = theme;
-    },
-    getColorScheme () {
-      return this.colorScheme;
+      this.$store.commit('updateColorSettings', theme);
     }
   },
   store: store
