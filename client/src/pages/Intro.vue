@@ -162,6 +162,7 @@ export default {
       },
 
       navigateToCafe() {
+        this.$root.acceptGraphicsSettings();
         this.$root.setQualityLevel(this.targetQuality);
         this.$router.push('/cafe');
       },

@@ -28,13 +28,15 @@ const routes = [
       },
       {
         path: '/cafe/customize', component: Customize 
-      }
+      },
+      { path: '*', redirect: NotFound }, 
   ]},
-  { path: '*', component: NotFound },
+  { path: '*', redirect: '/' }, 
 ];
 
 const router = new VueRouter({
-  routes
+  hash: true,
+  routes: routes,
 });
 
 new Vue({
@@ -48,6 +50,9 @@ new Vue({
     this.$store.commit('initStore');
   },
   methods: {
+    acceptGraphicsSettings () {
+      this.$store.commit('acceptGraphics');
+    },
     setQualityLevel (quality) {
       this.$store.commit('updateQualitySettings', quality);
     },

@@ -4,9 +4,6 @@
     <div class="main-container">
       <div class="main-blog" v-bind:style="{ backgroundColor: this.$store.state.colorSettings.base }">
           <router-view/>
-          <div class = "blog-header">Hello!</div>
-           <button class="intro-button" v-on:click="getColorTheme">Test </button>
-           <div class="theme-test" v-bind:style="currentColorScheme" >Color Theme Test</div>
       </div>
       <div class="main-renderer-only-desktop">
           <Renderer />
