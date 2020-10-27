@@ -83,7 +83,7 @@ export default {
 
   .logo {
     width: 253px;
-    height: 50px;
+    height: 40px;
     transition: all 0.3s;
     &.inverted {
       filter: invert(1.0);
